@@ -1,0 +1,15 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 32px;
+  background-color: var(--color-white);
+  box-shadow: 1px 1px 4px 0px var(--color-nav-shadow);
+}
+
+.header span {
+  margin-left: auto;
+  margin-right: 24px;
+  font-weight: 600;
+  font-size: 14px;
+}
