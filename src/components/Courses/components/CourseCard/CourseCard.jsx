@@ -58,7 +58,9 @@ const CourseCard = ({
 						<span>Created: {formatCreationDate(creationDate)}</span>
 					</p>
 				</div>
-				<Button onClick={handleDetailsClick}>Show course</Button>
+				<Button type='button' onClick={handleDetailsClick}>
+					Show course
+				</Button>
 			</div>
 		</div>
 	);

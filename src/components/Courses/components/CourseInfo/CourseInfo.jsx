@@ -82,7 +82,9 @@ const course = ({
 				</div>
 			</div>
 			<div className={styles.button}>
-				<Button onClick={handleBackToCoursesClick}>Back</Button>
+				<Button type='button' onClick={handleBackToCoursesClick}>
+					Back
+				</Button>
 			</div>
 		</div>
 	);
