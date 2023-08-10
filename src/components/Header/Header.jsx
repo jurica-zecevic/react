@@ -11,7 +11,7 @@ const Header = () => {
 	return (
 		<nav className={styles.header}>
 			<Logo />
-			<span>Jurica Zečević</span>
+			<span>{isAuthorized ? 'Jurica Zečević' : ''}</span>
 			<Button>{isAuthorized ? 'Logout' : 'Login'}</Button>
 		</nav>
 	);

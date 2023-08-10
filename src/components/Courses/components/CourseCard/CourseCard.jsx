@@ -5,12 +5,14 @@ import styles from './CourseCard.module.css';
 import Button from '../../../../common/Button/Button';
 
 const CourseCard = ({
+	id,
 	title,
 	description,
 	authors,
 	duration,
 	creationDate,
 	authorsList,
+	onSelect,
 }) => {
 	const formatCreationDate = (creationDate) => {
 		const date = creationDate.split('/');
@@ -34,6 +36,10 @@ const CourseCard = ({
 		});
 	}
 
+	const handleDetailsClick = () => {
+		onSelect(id);
+	};
+
 	return (
 		<div className={styles.courseCard}>
 			<div className={styles.courseCardLeft}>
@@ -52,7 +58,7 @@ const CourseCard = ({
 						<span>Created: {formatCreationDate(creationDate)}</span>
 					</p>
 				</div>
-				<Button>Show course</Button>
+				<Button onClick={handleDetailsClick}>Show course</Button>
 			</div>
 		</div>
 	);

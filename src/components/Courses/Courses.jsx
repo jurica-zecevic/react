@@ -5,10 +5,7 @@ import CourseCard from './components/CourseCard/CourseCard';
 
 import styles from './Courses.module.css';
 
-const Courses = (props) => {
-	const coursesList = props.coursesList;
-	const authorsList = props.authorsList;
-
+const Courses = ({ coursesList, authorsList, onSelectCourse }) => {
 	return (
 		<section>
 			{/* <SearchBar /> */}
@@ -16,12 +13,9 @@ const Courses = (props) => {
 				{coursesList.map((course) => (
 					<li key={course.id}>
 						<CourseCard
-							title={course.title}
-							description={course.description}
-							authors={course.authors}
-							duration={course.duration}
-							creationDate={course.creationDate}
+							{...course}
 							authorsList={authorsList}
+							onSelect={() => onSelectCourse(course)}
 						/>
 					</li>
 				))}

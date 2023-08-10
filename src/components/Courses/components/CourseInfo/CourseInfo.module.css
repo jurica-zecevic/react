@@ -1,0 +1,67 @@
+.wrapper h1 {
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.course {
+  display: flex;
+  padding: 32px;
+  background-color: var(--color-white);
+  box-shadow: 2px 0px 8px 0px var(--color-card-shadow);
+  border-radius: 5px;
+  border: 1px solid var(--color-black-border);
+}
+
+.course h3 {
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.left {
+  width: 50%;
+  margin-right: 24px;
+  padding-right: 24px;
+  border-right: 1px solid var(--color-goose-gray);
+}
+
+.right {
+  width: 50%;
+  padding-top: 48px;
+}
+
+.rightList .listItem:not(:first-child) {
+  margin-top: 16px;
+}
+
+.rightList .listItem:last-child .itemRight {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.listItem {
+  display: flex;
+}
+
+.itemLeft {
+  width: 33.33%;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.itemRight {
+  width: 66.66%;
+}
+
+.itemRightBold {
+  font-weight: 700;
+}
+
+.button {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.button button {
+  margin-top: 48px;
+}

@@ -12,6 +12,8 @@ export const mockedCoursesList = [
 		authors: [
 			'27cc3006-e93a-4748-8ca8-73d06aa93b6d',
 			'f762978b-61eb-4096-812b-ebde22838167',
+			'df32994e-b23d-497c-9e4d-84e4dc028841',
+			'095a1817-d45b-4ed7-9cf7-b2417bcbf748',
 		],
 	},
 	{
