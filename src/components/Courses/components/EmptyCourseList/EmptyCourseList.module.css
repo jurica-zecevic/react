@@ -1,4 +1,4 @@
-.emptyCourseList {
+.empty {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -6,10 +6,10 @@
   text-align: center;
 }
 
-.emptyCourseList p {
+.empty p {
   margin-top: 24px;
 }
 
-.emptyCourseList button {
+.empty button {
   margin-top: 32px;
 }

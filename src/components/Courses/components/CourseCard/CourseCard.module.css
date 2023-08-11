@@ -1,4 +1,4 @@
-.courseCard {
+.card {
   display: flex;
   padding: 32px;
   background-color: var(--color-white);
@@ -8,29 +8,29 @@
   border-left: 6px solid var(--color-charcoal-gray);
 }
 
-.courseCard h3 {
+.card h3 {
   margin-bottom: 10px;
 }
 
-.courseCard button {
+.card button {
   margin-top: 32px;
 }
 
-.courseCardAuthors {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.courseCardLeft {
+.left {
   width: 66.66%;
   margin-right: 48px;
 }
 
-.courseCardRight {
+.right {
   width: 33.33%;
 }
 
-.courseCardRightList p:not(:first-child) {
+.rightList p:not(:first-child) {
   margin-top: 5px;
+}
+
+.cardAuthors {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

@@ -30,7 +30,7 @@ const Courses = ({ coursesList, authorsList, onSelectCourse }) => {
 	return (
 		<section>
 			{<SearchBar onSearch={handleSearch} />}
-			<ul className={styles.coursesList}>
+			<ul className={styles.courses}>
 				{filteredCourses.map((course) => (
 					<li key={course.id}>
 						<CourseCard
