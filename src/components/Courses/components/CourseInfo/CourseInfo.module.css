@@ -1,4 +1,4 @@
-.wrapper h1 {
+.courseWrapper h1 {
   font-weight: 700;
   margin-bottom: 24px;
 }
@@ -17,23 +17,23 @@
   margin-bottom: 24px;
 }
 
-.left {
+.courseHeader {
   width: 50%;
   margin-right: 24px;
   padding-right: 24px;
   border-right: 1px solid var(--color-goose-gray);
 }
 
-.right {
+.courseDetails {
   width: 50%;
   padding-top: 48px;
 }
 
-.rightList .listItem:not(:first-child) {
+.courseList .listItem:not(:first-child) {
   margin-top: 16px;
 }
 
-.rightList .listItem:last-child .itemRight {
+.courseList .listItem:last-child .itemDescription {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -43,25 +43,22 @@
   display: flex;
 }
 
-.itemLeft {
+.itemHeader {
   width: 33.33%;
   font-weight: 700;
   font-size: 20px;
 }
 
-.itemRight {
+.itemDescription {
   width: 66.66%;
 }
 
-.itemRightBold {
+.itemDescription span:first-child {
   font-weight: 700;
 }
 
-.button {
+.buttonContainer button {
   display: flex;
   justify-content: flex-end;
-}
-
-.button button {
   margin-top: 48px;
 }

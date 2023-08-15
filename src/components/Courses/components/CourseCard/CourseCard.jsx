@@ -40,13 +40,13 @@ const CourseCard = ({
 
 	return (
 		<div className={styles.card}>
-			<div className={styles.left}>
+			<div className={styles.cardHeader}>
 				<h3>{title}</h3>
 				<p>{description}</p>
 			</div>
-			<div className={styles.right}>
-				<div className={styles.rightList}>
-					<p className={styles.cardAuthors}>
+			<div className={styles.cardDetails}>
+				<div className={styles.cardList}>
+					<p>
 						<span>Authors: {getAuthorNames(authors).join(', ')}</span>
 					</p>
 					<p>

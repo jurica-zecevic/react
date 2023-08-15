@@ -16,20 +16,20 @@
   margin-top: 32px;
 }
 
-.left {
+.cardHeader {
   width: 66.66%;
   margin-right: 48px;
 }
 
-.right {
+.cardDetails {
   width: 33.33%;
 }
 
-.rightList p:not(:first-child) {
+.cardList p:not(:first-child) {
   margin-top: 5px;
 }
 
-.cardAuthors {
+.cardList p:first-child {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
