@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import Container from './common/Container/Container';
 
@@ -18,27 +18,33 @@ function App() {
 		setSelectedCourse(course);
 	};
 
+	const renderContent = () => {
+		if (selectedCourse) {
+			return (
+				<CourseInfo
+					{...selectedCourse}
+					authorsList={mockedAuthorsList}
+					onBackToCourses={handleCourseInfo}
+				/>
+			);
+		} else if (mockedCoursesList.length) {
+			return (
+				<Courses
+					coursesList={mockedCoursesList}
+					authorsList={mockedAuthorsList}
+					onSelectCourse={handleCourseInfo}
+				/>
+			);
+		} else {
+			return <EmptyCourseList />;
+		}
+	};
+
 	return (
 		<>
 			<Header />
 			<main>
-				<Container>
-					{selectedCourse ? (
-						<CourseInfo
-							{...selectedCourse}
-							authorsList={mockedAuthorsList}
-							onBackToCourses={handleCourseInfo}
-						/>
-					) : mockedCoursesList.length ? (
-						<Courses
-							coursesList={mockedCoursesList}
-							authorsList={mockedAuthorsList}
-							onSelectCourse={handleCourseInfo}
-						/>
-					) : (
-						<EmptyCourseList />
-					)}
-				</Container>
+				<Container>{renderContent()}</Container>
 			</main>
 		</>
 	);
