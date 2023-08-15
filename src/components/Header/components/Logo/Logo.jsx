@@ -1,9 +1,11 @@
 import logo from '../../../../assets/logo.png';
 
+import styles from './Logo.module.css';
+
 const Logo = () => {
 	return (
 		<a href='/'>
-			<img src={logo} alt='Courses logo' />
+			<img className={styles.logo} src={logo} alt='Courses logo' />
 		</a>
 	);
 };
