@@ -3,9 +3,9 @@ export const formatCourseDuration = (durationInMinutes) => {
 	const minutes = durationInMinutes % 60;
 	const formattedHours = hours < 10 ? `0${hours}` : hours;
 	const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
-	const hourString = hours === 1 ? 'hour' : 'hours';
+	const durationLabel = hours === 1 ? 'hour' : 'hours';
 	return {
-		hoursMins: `${formattedHours}:${formattedMinutes}`,
-		hourString: hourString,
+		durationTime: `${formattedHours}:${formattedMinutes}`,
+		durationLabel: durationLabel,
 	};
 };
