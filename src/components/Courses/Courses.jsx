@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import SearchBar from './components/SearchBar/SearchBar';
 import CourseCard from './components/CourseCard/CourseCard';
-/* import Button from '../../common/Button/Button'; */
+import Button from '../../common/Button/Button';
 
 import styles from './Courses.module.css';
 
@@ -41,7 +41,7 @@ const Courses = ({ coursesList, authorsList, onSelectCourse }) => {
 					</li>
 				))}
 			</ul>
-			{/* <Button type='button'>Add new course</Button> */}
+			<Button type='button' buttonText='Add new course' />
 		</section>
 	);
 };
