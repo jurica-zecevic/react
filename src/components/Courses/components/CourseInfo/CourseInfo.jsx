@@ -2,6 +2,10 @@ import styles from './CourseInfo.module.css';
 
 import Button from '../../../../common/Button/Button';
 
+import { formatCourseDuration } from '../../../../helpers/formatCourseDuration';
+import { formatCreationDate } from '../../../../helpers/formatCreationDate';
+import { getAuthorNames } from '../../../../helpers/getAuthorNames';
+
 const course = ({
 	id,
 	title,
@@ -12,31 +16,6 @@ const course = ({
 	authorsList,
 	onBackToCourses,
 }) => {
-	const formatCreationDate = (creationDate) => {
-		const date = creationDate.split('/');
-		const dateRes = date.join('.');
-		return dateRes;
-	};
-
-	const formatDuration = (durationInMinutes) => {
-		const hours = Math.floor(durationInMinutes / 60);
-		const minutes = durationInMinutes % 60;
-		const formattedHours = hours < 10 ? '0' + hours : hours;
-		const formattedMinutes = minutes < 10 ? '0' + minutes : minutes;
-		const hourString = hours === 1 ? 'hour' : 'hours';
-		return {
-			boldPart: `${formattedHours}:${formattedMinutes}`,
-			notBoldPart: hourString,
-		};
-	};
-
-	const getAuthorNames = (courseAuthors) => {
-		return courseAuthors.map((authorId) => {
-			const author = authorsList.find((author) => author.id === authorId);
-			return author ? author.name : 'Unknown Author';
-		});
-	};
-
 	const handleBackToCoursesClick = () => {
 		onBackToCourses();
 	};
@@ -58,8 +37,8 @@ const course = ({
 						<p className={styles.listItem}>
 							<span className={styles.itemHeader}>Duration: </span>
 							<span className={styles.itemDescription}>
-								<span>{formatDuration(duration).boldPart} </span>
-								<span>{formatDuration(duration).notBoldPart}</span>
+								<span>{formatCourseDuration(duration).hoursMins} </span>
+								<span>{formatCourseDuration(duration).hourString}</span>
 							</span>
 						</p>
 						<p className={styles.listItem}>
@@ -71,7 +50,7 @@ const course = ({
 						<p className={styles.listItem}>
 							<span className={styles.itemHeader}>Authors: </span>
 							<span className={styles.itemDescription}>
-								{getAuthorNames(authors).join(', ')}
+								{getAuthorNames(authors, authorsList).join(', ')}
 							</span>
 						</p>
 					</div>

@@ -1,8 +1,15 @@
-.courses {
+.coursesHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 32px;
+}
+
+.coursesList {
   display: flex;
   flex-direction: column;
 }
 
-.courses li:not(:first-child) {
+.coursesList li:not(:first-child) {
   margin-top: 32px;
 }

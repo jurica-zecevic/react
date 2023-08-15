@@ -29,8 +29,11 @@ const Courses = ({ coursesList, authorsList, onSelectCourse }) => {
 
 	return (
 		<section>
-			{<SearchBar onSearch={handleSearch} />}
-			<ul className={styles.courses}>
+			<div className={styles.coursesHeader}>
+				{<SearchBar onSearch={handleSearch} />}
+				<Button type='button' buttonText='Add new course' />
+			</div>
+			<ul className={styles.coursesList}>
 				{filteredCourses.map((course) => (
 					<li key={course.id}>
 						<CourseCard
@@ -41,7 +44,6 @@ const Courses = ({ coursesList, authorsList, onSelectCourse }) => {
 					</li>
 				))}
 			</ul>
-			<Button type='button' buttonText='Add new course' />
 		</section>
 	);
 };
