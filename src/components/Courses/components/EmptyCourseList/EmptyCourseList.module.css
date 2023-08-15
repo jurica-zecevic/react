@@ -4,12 +4,11 @@
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-}
-
-.empty p {
-  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
 }
 
 .empty button {
-  margin-top: 32px;
+  align-self: center;
 }
