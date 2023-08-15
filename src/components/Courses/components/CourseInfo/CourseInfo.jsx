@@ -1,5 +1,3 @@
-import React from 'react';
-
 import styles from './CourseInfo.module.css';
 
 import Button from '../../../../common/Button/Button';

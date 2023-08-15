@@ -1,5 +1,3 @@
-import React from 'react';
-
 import styles from './Header.module.css';
 
 import Logo from './components/Logo/Logo';
