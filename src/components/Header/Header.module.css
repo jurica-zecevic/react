@@ -14,7 +14,7 @@ header {
 }
 
 header span {
-  margin: 0em 1em;
+  margin: 0em 1em 0em auto;
   font-weight: 600;
   font-size: 0.875em;
   overflow: hidden;
@@ -25,6 +25,5 @@ header span {
 @media (min-width: 37.5em) {
   header span {
     margin-right: 1.5em;
-    margin-left: auto;
   }
 }
