@@ -35,8 +35,8 @@ const CourseCard = ({
 					</p>
 					<p>
 						<span>
-							Duration: {formatCourseDuration(duration).hoursMins}{' '}
-							{formatCourseDuration(duration).hourString}
+							Duration: {formatCourseDuration(duration).durationTime}{' '}
+							{formatCourseDuration(duration).durationLabel}
 						</span>
 					</p>
 					<p>

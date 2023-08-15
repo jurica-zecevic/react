@@ -21,11 +21,11 @@ const course = ({
 	};
 
 	return (
-		<div className={styles.courseWrapper}>
+		<div className={styles.course}>
 			<h1>{title}</h1>
-			<div className={styles.course}>
+			<div className={styles.courseCard}>
 				<div className={styles.courseHeader}>
-					<h3>Description:</h3>
+					<h2>Description:</h2>
 					<p>{description}</p>
 				</div>
 				<div className={styles.courseDetails}>
@@ -37,8 +37,8 @@ const course = ({
 						<p className={styles.listItem}>
 							<span className={styles.itemHeader}>Duration: </span>
 							<span className={styles.itemDescription}>
-								<span>{formatCourseDuration(duration).hoursMins} </span>
-								<span>{formatCourseDuration(duration).hourString}</span>
+								<span>{formatCourseDuration(duration).durationTime} </span>
+								<span>{formatCourseDuration(duration).durationLabel}</span>
 							</span>
 						</p>
 						<p className={styles.listItem}>
