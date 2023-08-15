@@ -24,7 +24,7 @@ const SearchBar = ({ onSearch }) => {
 	}, [searchQuery, onSearch]);
 
 	return (
-		<form onSubmit={handleSubmit} className={styles.searchForm}>
+		<form onSubmit={handleSubmit} className={styles.form}>
 			<Input
 				type='text'
 				name='search'
