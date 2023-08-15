@@ -14,12 +14,8 @@ import EmptyCourseList from './components/Courses/components/EmptyCourseList/Emp
 function App() {
 	const [selectedCourse, setSelectedCourse] = useState(null);
 
-	const showCourseInfo = (course) => {
+	const handleCourseInfo = (course) => {
 		setSelectedCourse(course);
-	};
-
-	const handleBackToCourses = () => {
-		setSelectedCourse(null);
 	};
 
 	return (
@@ -31,13 +27,13 @@ function App() {
 						<CourseInfo
 							{...selectedCourse}
 							authorsList={mockedAuthorsList}
-							onBackToCourses={handleBackToCourses}
+							onBackToCourses={handleCourseInfo}
 						/>
 					) : mockedCoursesList.length ? (
 						<Courses
 							coursesList={mockedCoursesList}
 							authorsList={mockedAuthorsList}
-							onSelectCourse={showCourseInfo}
+							onSelectCourse={handleCourseInfo}
 						/>
 					) : (
 						<EmptyCourseList />
