@@ -1,15 +1,29 @@
 .coursesHeader {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 32px;
+  margin-bottom: 2em;
+}
+
+.coursesHeaderButton {
+  margin-top: 1.5em;
+}
+
+@media (min-width: 60em) {
+  .coursesHeader {
+    display: flex;
+    justify-content: space-between;
+  }
+  .coursesHeaderButton {
+    margin-top: 0em;
+  }
 }
 
 .coursesList {
   display: flex;
   flex-direction: column;
+  list-style: none;
+  margin: 0em;
+  padding: 0em;
 }
 
 .coursesList li:not(:first-child) {
-  margin-top: 32px;
+  margin-top: 2em;
 }

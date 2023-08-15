@@ -1,36 +1,58 @@
-.courseWrapper h1 {
-  font-weight: 700;
-  margin-bottom: 24px;
+.course h1 {
+  margin-bottom: 1.5em;
 }
 
-.course {
-  display: flex;
-  padding: 32px;
+.courseCard {
+  padding: 1.5em;
   background-color: var(--color-white);
   box-shadow: 2px 0px 8px 0px var(--color-card-shadow);
-  border-radius: 5px;
+  border-radius: 0.3125em;
   border: 1px solid var(--color-black-border);
 }
 
-.course h3 {
-  font-weight: 700;
-  margin-bottom: 24px;
+@media (min-width: 37.5em) {
+  .courseCard {
+    padding: 2em;
+  }
 }
 
-.courseHeader {
-  width: 50%;
-  margin-right: 24px;
-  padding-right: 24px;
-  border-right: 1px solid var(--color-goose-gray);
+@media (min-width: 60em) {
+  .courseCard {
+    display: flex;
+  }
+}
+
+.courseCard h2 {
+  font-size: 1.17em;
+  margin-top: 0em;
+}
+
+.courseCard p {
+  margin: 0em;
+}
+
+@media (min-width: 60em) {
+  .courseHeader {
+    width: calc(100% / 2);
+    margin-right: 1.5em;
+    padding-right: 1.5em;
+    border-right: 1px solid var(--color-goose-gray);
+  }
 }
 
 .courseDetails {
-  width: 50%;
-  padding-top: 48px;
+  padding-top: 2em;
+}
+
+@media (min-width: 60em) {
+  .courseDetails {
+    width: calc(100% / 2);
+    padding-top: 3em;
+  }
 }
 
 .courseList .listItem:not(:first-child) {
-  margin-top: 16px;
+  margin-top: 1em;
 }
 
 .courseList .listItem:last-child .itemDescription {
@@ -44,13 +66,20 @@
 }
 
 .itemHeader {
-  width: 33.33%;
+  width: calc(100% / 3);
   font-weight: 700;
-  font-size: 20px;
+  margin-right: 1em;
+}
+
+@media (min-width: 37.5em) {
+  .itemHeader {
+    font-size: 1.25em;
+    margin-right: 0em;
+  }
 }
 
 .itemDescription {
-  width: 66.66%;
+  width: calc(100% / 1.5);
 }
 
 .itemDescription span:first-child {
@@ -60,5 +89,5 @@
 .buttonContainer button {
   display: flex;
   justify-content: flex-end;
-  margin-top: 48px;
+  margin-top: 3em;
 }

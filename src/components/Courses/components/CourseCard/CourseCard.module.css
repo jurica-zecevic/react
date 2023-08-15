@@ -1,32 +1,46 @@
 .card {
-  display: flex;
-  padding: 32px;
+  padding: 1.5em;
   background-color: var(--color-white);
   box-shadow: 2px 0px 8px 0px var(--color-card-shadow);
-  border-radius: 5px;
+  border-radius: 0.3125em;
   border: 1px solid var(--color-black-border);
   border-left: 6px solid var(--color-charcoal-gray);
 }
 
+@media (min-width: 37.5em) {
+  .card {
+    padding: 2em;
+  }
+}
+
+@media (min-width: 60em) {
+  .card {
+    display: flex;
+    gap: 3em;
+  }
+}
+
 .card h3 {
-  margin-bottom: 10px;
+  margin-top: 0em;
+}
+
+.card p {
+  margin: 0em;
 }
 
 .card button {
-  margin-top: 32px;
+  margin-top: 2em;
 }
 
-.cardHeader {
-  width: 66.66%;
-  margin-right: 48px;
-}
-
-.cardDetails {
-  width: 33.33%;
+@media (min-width: 60em) {
+  .cardDetails {
+    width: calc(100% / 3);
+    flex-shrink: 0;
+  }
 }
 
 .cardList p:not(:first-child) {
-  margin-top: 5px;
+  margin-top: 0.3125em;
 }
 
 .cardList p:first-child {

@@ -6,7 +6,7 @@
   text-align: center;
   display: flex;
   flex-direction: column;
-  row-gap: 24px;
+  row-gap: 1.5em;
 }
 
 .empty button {
