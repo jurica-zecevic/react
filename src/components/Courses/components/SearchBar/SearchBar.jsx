@@ -32,7 +32,7 @@ const SearchBar = ({ onSearch }) => {
 				onChange={handleInputChange}
 				placeholder='Search courses by title or id'
 			/>
-			<Button type='submit'>Search</Button>
+			<Button type='submit' buttonText='Search' />
 		</form>
 	);
 };

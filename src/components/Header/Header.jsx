@@ -12,7 +12,7 @@ const Header = () => {
 		<nav className={styles.header}>
 			<Logo />
 			<span>{isAuthorized ? 'Jurica Zečević' : ''}</span>
-			<Button type='button'>{isAuthorized ? 'Logout' : 'Login'}</Button>
+			<Button type='button' buttonText={isAuthorized ? 'Logout' : 'Login'} />
 		</nav>
 	);
 };

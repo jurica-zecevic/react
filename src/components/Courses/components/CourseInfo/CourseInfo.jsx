@@ -82,9 +82,11 @@ const course = ({
 				</div>
 			</div>
 			<div className={styles.button}>
-				<Button type='button' onClick={handleBackToCoursesClick}>
-					Back
-				</Button>
+				<Button
+					type='button'
+					onClick={handleBackToCoursesClick}
+					buttonText='Back'
+				/>
 			</div>
 		</div>
 	);
