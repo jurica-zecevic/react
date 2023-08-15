@@ -7,11 +7,11 @@ const Header = () => {
 	const isAuthorized = true;
 
 	return (
-		<nav className={styles.header}>
+		<header className={styles.header}>
 			<Logo />
-			<span>{isAuthorized ? 'Jurica Zečević' : ''}</span>
+			{isAuthorized && <span>Jurica Zečević</span>}
 			<Button type='button' buttonText={isAuthorized ? 'Logout' : 'Login'} />
-		</nav>
+		</header>
 	);
 };
 
