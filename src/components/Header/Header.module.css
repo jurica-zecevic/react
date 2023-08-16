@@ -1,0 +1,29 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1em 1.5em;
+  background-color: var(--color-white);
+  box-shadow: 1px 1px 4px 0px var(--color-nav-shadow);
+}
+
+@media (min-width: 37.5em) {
+  .header {
+    padding: 1.5em 2em;
+  }
+}
+
+.header span {
+  margin: 0 1em 0 auto;
+  font-weight: 600;
+  font-size: 0.875em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media (min-width: 37.5em) {
+  .header span {
+    margin-right: 1.5em;
+  }
+}

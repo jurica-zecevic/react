@@ -1,0 +1,19 @@
+.empty {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, calc(-50% - 2em));
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+}
+
+.empty h1,
+.empty p {
+  margin: 0;
+}
+
+.empty button {
+  align-self: center;
+}

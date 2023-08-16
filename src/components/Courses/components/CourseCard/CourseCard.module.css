@@ -1,0 +1,50 @@
+.card {
+  padding: 1.5em;
+  background-color: var(--color-white);
+  box-shadow: 2px 0px 8px 0px var(--color-card-shadow);
+  border-radius: 0.3125em;
+  border: 1px solid var(--color-black-border);
+  border-left: 6px solid var(--color-charcoal-gray);
+}
+
+@media (min-width: 37.5em) {
+  .card {
+    padding: 2em;
+  }
+}
+
+@media (min-width: 60em) {
+  .card {
+    display: flex;
+    gap: 3em;
+  }
+}
+
+.card h3 {
+  margin-top: 0;
+}
+
+.card p {
+  margin: 0;
+}
+
+.card button {
+  margin-top: 2em;
+}
+
+@media (min-width: 60em) {
+  .cardDetails {
+    width: calc(100% / 3);
+    flex-shrink: 0;
+  }
+}
+
+.cardList p:not(:first-child) {
+  margin-top: 0.3125em;
+}
+
+.cardList p:first-child {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
