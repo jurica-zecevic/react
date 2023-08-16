@@ -1,10 +1,10 @@
 import styles from './CourseInfo.module.css';
 
-import Button from '../../../../common/Button/Button';
+import Button from '../../common/Button/Button';
 
-import { formatCourseDuration } from '../../../../helpers/formatCourseDuration';
-import { formatCreationDate } from '../../../../helpers/formatCreationDate';
-import { getAuthorNames } from '../../../../helpers/getAuthorNames';
+import { formatCourseDuration } from '../../helpers/formatCourseDuration';
+import { formatCreationDate } from '../../helpers/formatCreationDate';
+import { getAuthorNames } from '../../helpers/getAuthorNames';
 
 const course = ({
 	id,

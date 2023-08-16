@@ -8,7 +8,7 @@ import './App.css';
 
 import Header from './components/Header/Header';
 import Courses from './components/Courses/Courses';
-import CourseInfo from './components/Courses/components/CourseInfo/CourseInfo';
+import CourseInfo from './components/CourseInfo/CourseInfo';
 import EmptyCourseList from './components/Courses/components/EmptyCourseList/EmptyCourseList';
 
 function App() {
