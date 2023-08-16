@@ -1,7 +1,7 @@
-form {
+.form {
   display: flex;
 }
 
-form input {
+.form input {
   margin-right: 1em;
 }
