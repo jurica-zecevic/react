@@ -9,7 +9,7 @@ import './App.css';
 import Header from './components/Header/Header';
 import Courses from './components/Courses/Courses';
 import CourseInfo from './components/CourseInfo/CourseInfo';
-import EmptyCourseList from './components/Courses/components/EmptyCourseList/EmptyCourseList';
+import EmptyCourseList from './components/EmptyCourseList/EmptyCourseList';
 
 function App() {
 	const [selectedCourse, setSelectedCourse] = useState(null);

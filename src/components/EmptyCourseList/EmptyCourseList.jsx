@@ -1,4 +1,4 @@
-import Button from '../../../../common/Button/Button';
+import Button from '../../common/Button/Button';
 
 import styles from './EmptyCourseList.module.css';
 
