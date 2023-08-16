@@ -11,7 +11,7 @@
 
 .empty h1,
 .empty p {
-  margin: 0em;
+  margin: 0;
 }
 
 .empty button {
