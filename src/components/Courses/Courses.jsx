@@ -31,11 +31,9 @@ const Courses = ({ coursesList, authorsList, onSelectCourse }) => {
 		<section>
 			<div className={styles.coursesHeader}>
 				<SearchBar onSearch={handleSearch} />
-				<Button
-					className={styles.coursesHeaderButton}
-					type='button'
-					buttonText='Add new course'
-				/>
+				<div className={styles.buttonContainer}>
+					<Button type='button' buttonText='Add new course' />
+				</div>
 			</div>
 			<ul className={styles.coursesList}>
 				{filteredCourses.map((course) => (
