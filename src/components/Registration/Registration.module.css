@@ -31,6 +31,7 @@
   display: flex;
   flex-direction: column;
   margin-bottom: 1em;
+  font-weight: 700;
 }
 
 .formLabel input {
@@ -38,8 +39,8 @@
 }
 
 .registrationForm button[type="submit"] ~ p {
-  margin-top: 2em;
-  margin-bottom: 0;
+  margin: 2em 0 0;
+  text-align: center;
 }
 
 .registrationForm button[type="submit"] ~ p a {
@@ -54,5 +55,6 @@
 
 .invalid {
   color: var(--color-red);
-  margin-top: 5px;
+  margin: 5px 0 0;
+  font-weight: 400;
 }
