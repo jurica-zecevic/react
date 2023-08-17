@@ -1,0 +1,60 @@
+.loginFormWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.loginFormWrapper h1 {
+  margin-top: 0;
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  padding: 2em 3.5em;
+  background-color: var(--color-white);
+  border: 1px solid var(--color-goose-gray);
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+@media (min-width: 37.5em) {
+  .loginForm {
+    width: 585px;
+    padding: 6.25em 9.375em;
+  }
+}
+
+.formLabel {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2em;
+  font-weight: 700;
+}
+
+.formLabel input {
+  width: auto;
+}
+
+.loginForm button[type="submit"] ~ p {
+  margin: 2em 0 0;
+  text-align: center;
+}
+
+.loginForm button[type="submit"] ~ p a {
+  color: inherit;
+  font-weight: 700;
+}
+
+.loginForm button[type="submit"] ~ p a:hover {
+  color: var(--color-primary-blue);
+  transition: color 0.2s ease;
+}
+
+.invalid {
+  color: var(--color-red);
+  margin: 5px 0 0;
+  font-weight: 400;
+}
