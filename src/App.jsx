@@ -8,6 +8,7 @@ import Header from './components/Header/Header';
 import Container from './common/Container/Container';
 import Courses from './components/Courses/Courses';
 import CourseInfo from './components/CourseInfo/CourseInfo';
+import CreateCourse from './components/CreateCourse/CreateCourse';
 import Registration from './components/Registration/Registration';
 import Login from './components/Login/Login';
 
@@ -48,6 +49,7 @@ const App = () => {
 						/>
 					}
 				/>
+				<Route path='courses/add' element={<CreateCourse />} />
 				<Route path='register' element={<Registration />} />
 				<Route path='login' element={<Login />} />
 				{token && <Route path='/' element={<Navigate to='/courses' />} />}
