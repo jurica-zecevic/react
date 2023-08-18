@@ -71,7 +71,7 @@ const Registration = () => {
 			<h1>Registration</h1>
 			<form onSubmit={handleSubmit} className={styles.registrationForm}>
 				<label className={styles.formLabel} htmlFor='reg-form-name'>
-					Name:
+					Name
 					<Input
 						id='reg-form-name'
 						style={{ borderColor: !nameValid && 'var(--color-red)' }}
@@ -84,7 +84,7 @@ const Registration = () => {
 					{!nameValid && <p className={styles.invalid}>Name is required.</p>}
 				</label>
 				<label className={styles.formLabel} htmlFor='reg-form-email'>
-					Email:
+					Email
 					<Input
 						id='reg-form-email'
 						style={{ borderColor: !emailValid && 'var(--color-red)' }}
@@ -97,7 +97,7 @@ const Registration = () => {
 					{!emailValid && <p className={styles.invalid}>Email is required.</p>}
 				</label>
 				<label className={styles.formLabel} htmlFor='reg-form-password'>
-					Password:
+					Password
 					<Input
 						id='reg-form-password'
 						style={{ borderColor: !passwordValid && 'var(--color-red)' }}

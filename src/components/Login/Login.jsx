@@ -63,7 +63,7 @@ const Login = () => {
 			<h1>Login</h1>
 			<form onSubmit={handleSubmit} className={styles.loginForm}>
 				<label className={styles.formLabel} htmlFor='reg-form-email'>
-					Email:
+					Email
 					<Input
 						id='reg-form-email'
 						style={{ borderColor: !emailValid && 'var(--color-red)' }}
@@ -76,7 +76,7 @@ const Login = () => {
 					{!emailValid && <p className={styles.invalid}>Email is required.</p>}
 				</label>
 				<label className={styles.formLabel} htmlFor='reg-form-password'>
-					Password:
+					Password
 					<Input
 						id='reg-form-password'
 						style={{ borderColor: !passwordValid && 'var(--color-red)' }}
