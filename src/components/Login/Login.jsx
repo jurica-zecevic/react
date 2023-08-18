@@ -13,7 +13,6 @@ const Login = () => {
 	const [passwordValue, setPasswordValue] = useState('');
 	const [emailValid, setEmailValid] = useState(true);
 	const [passwordValid, setPasswordValid] = useState(true);
-	const [hasError, setError] = useState(false);
 
 	const navigate = useNavigate();
 
@@ -55,14 +54,13 @@ const Login = () => {
 				navigate('/courses');
 			}
 		} catch (error) {
-			setError(true);
+			console.error(error);
 		}
 	};
 
 	return (
 		<div className={styles.loginFormWrapper}>
 			<h1>Login</h1>
-			{hasError && <p>Sorry, Sign up failed!</p>}
 			<form onSubmit={handleSubmit} className={styles.loginForm}>
 				<label className={styles.formLabel} htmlFor='reg-form-email'>
 					Email:

@@ -16,7 +16,6 @@ const Registration = () => {
 	const [nameValid, setNameValid] = useState(true);
 	const [emailValid, setEmailValid] = useState(true);
 	const [passwordValid, setPasswordValid] = useState(true);
-	const [hasError, setError] = useState(false);
 
 	const navigate = useNavigate();
 
@@ -63,14 +62,13 @@ const Registration = () => {
 				navigate('/login');
 			}
 		} catch (error) {
-			setError(true);
+			console.error(error);
 		}
 	};
 
 	return (
 		<div className={styles.registrationFormWrapper}>
 			<h1>Registration</h1>
-			{hasError && <p>Sorry, Sign up failed!</p>}
 			<form onSubmit={handleSubmit} className={styles.registrationForm}>
 				<label className={styles.formLabel} htmlFor='reg-form-name'>
 					Name:
