@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom';
+
 import styles from './CourseCard.module.css';
 
 import Button from '../../../../common/Button/Button';
@@ -14,10 +16,11 @@ const CourseCard = ({
 	duration,
 	creationDate,
 	authorsList,
-	onSelect,
 }) => {
-	const handleDetailsClick = () => {
-		onSelect(id);
+	const navigate = useNavigate();
+
+	const showCourseDetails = () => {
+		navigate(`/courses/${id}`);
 	};
 
 	return (
@@ -46,7 +49,7 @@ const CourseCard = ({
 				<Button
 					buttonText='Show course'
 					type='button'
-					onClick={handleDetailsClick}
+					onClick={showCourseDetails}
 				/>
 			</div>
 		</div>

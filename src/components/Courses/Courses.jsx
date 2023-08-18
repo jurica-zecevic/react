@@ -2,11 +2,11 @@ import { useState } from 'react';
 
 import SearchBar from './components/SearchBar/SearchBar';
 import CourseCard from './components/CourseCard/CourseCard';
-import Button from '../../common/Button/Button';
+import Link from '../../common/Link/Link';
 
 import styles from './Courses.module.css';
 
-const Courses = ({ coursesList, authorsList, onSelectCourse }) => {
+const Courses = ({ coursesList, authorsList }) => {
 	const [filteredCourses, setDisplayedCourses] = useState(coursesList);
 
 	const handleSearch = (searchTerm) => {
@@ -28,25 +28,23 @@ const Courses = ({ coursesList, authorsList, onSelectCourse }) => {
 	};
 
 	return (
-		<section>
-			<div className={styles.coursesHeader}>
-				<SearchBar onSearch={handleSearch} />
-				<div className={styles.buttonContainer}>
-					<Button type='button' buttonText='Add new course' />
+		<>
+			<section>
+				<div className={styles.coursesHeader}>
+					<SearchBar onSearch={handleSearch} />
+					<div className={styles.buttonContainer}>
+						<Link to='/courses/add' linkText='Add new course' />
+					</div>
 				</div>
-			</div>
-			<ul className={styles.coursesList}>
-				{filteredCourses.map((course) => (
-					<li key={course.id}>
-						<CourseCard
-							{...course}
-							authorsList={authorsList}
-							onSelect={() => onSelectCourse(course)}
-						/>
-					</li>
-				))}
-			</ul>
-		</section>
+				<ul className={styles.coursesList}>
+					{filteredCourses.map((course) => (
+						<li key={course.id}>
+							<CourseCard {...course} authorsList={authorsList} />
+						</li>
+					))}
+				</ul>
+			</section>
+		</>
 	);
 };
 

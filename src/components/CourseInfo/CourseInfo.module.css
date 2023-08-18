@@ -86,7 +86,7 @@
   font-weight: 700;
 }
 
-.buttonContainer {
+.linkContainer {
   display: flex;
   justify-content: flex-end;
   margin-top: 3em;
