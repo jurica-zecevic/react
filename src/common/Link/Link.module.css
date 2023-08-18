@@ -1,7 +1,4 @@
 .link {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   color: var(--color-white);
   background-color: var(--color-primary-blue);
   padding: 0.5em 1em;

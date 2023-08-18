@@ -1,13 +1,20 @@
+import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
 import SearchBar from './components/SearchBar/SearchBar';
 import CourseCard from './components/CourseCard/CourseCard';
-import Link from '../../common/Link/Link';
+import Button from '../../common/Button/Button';
 
 import styles from './Courses.module.css';
 
 const Courses = ({ coursesList, authorsList }) => {
 	const [filteredCourses, setDisplayedCourses] = useState(coursesList);
+
+	const navigate = useNavigate();
+
+	const handleAddNewCourse = () => {
+		navigate('/courses/add');
+	};
 
 	const handleSearch = (searchTerm) => {
 		if (searchTerm) {
@@ -33,7 +40,11 @@ const Courses = ({ coursesList, authorsList }) => {
 				<div className={styles.coursesHeader}>
 					<SearchBar onSearch={handleSearch} />
 					<div className={styles.buttonContainer}>
-						<Link to='/courses/add' linkText='Add new course' />
+						<Button
+							type='button'
+							buttonText='Add new course'
+							onClick={handleAddNewCourse}
+						/>
 					</div>
 				</div>
 				<ul className={styles.coursesList}>
