@@ -1,0 +1,90 @@
+.newCourseFormWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.newCourseFormWrapper h1 {
+  margin-top: 0;
+  width: 100%;
+}
+
+.newCourseForm {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 2em 3em;
+  background-color: var(--color-white);
+  border: 1px solid var(--color-goose-gray);
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+@media (min-width: 80em) {
+  .newCourseForm {
+    padding: 2.5em 5em;
+  }
+}
+
+.newCourseForm h2 {
+  margin-top: 0;
+}
+
+.formLabel {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5em;
+  font-weight: 700;
+}
+
+.authorLabel {
+  position: relative;
+}
+
+@media (min-width: 37.5em) {
+  .authors {
+    display: flex;
+    justify-content: space-between;
+  }
+  .authorLabel button {
+    width: max-content;
+    position: absolute;
+    top: 1.375em;
+    left: 100%;
+  }
+  .duration {
+    display: flex;
+    align-items: center;
+  }
+  .duration input,
+  .authorLabel input {
+    width: 25em;
+  }
+  .durationText {
+    margin-left: 1em;
+  }
+}
+
+.authorLabel input {
+  margin-right: 1em;
+}
+
+.durationText span {
+  font-weight: 700;
+}
+
+.actionBtns {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  margin-top: 2em;
+  gap: 1em;
+}
+
+.invalid {
+  color: var(--color-red);
+  margin: 5px 0 0;
+  font-weight: 400;
+}

@@ -1,4 +1,5 @@
 import { Routes, Route, Outlet, Navigate } from 'react-router-dom';
+import { useState } from 'react';
 
 import './App.css';
 
@@ -28,6 +29,12 @@ const Layout = () => {
 };
 
 const App = () => {
+	const [courses, setCourses] = useState([]);
+
+	const handleCreateCourse = (newCourse) => {
+		setCourses([...courses, newCourse]);
+	};
+
 	return (
 		<Routes>
 			<Route path='/' element={<Layout />}>
@@ -49,7 +56,10 @@ const App = () => {
 						/>
 					}
 				/>
-				<Route path='courses/add' element={<CreateCourse />} />
+				<Route
+					path='courses/add'
+					element={<CreateCourse onCreateCourse={handleCreateCourse} />}
+				/>
 				<Route path='register' element={<Registration />} />
 				<Route path='login' element={<Login />} />
 				{token && <Route path='/' element={<Navigate to='/courses' />} />}
