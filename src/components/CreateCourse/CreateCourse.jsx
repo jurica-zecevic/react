@@ -10,7 +10,7 @@ import Textarea from '../../common/Textarea/Textarea';
 
 import styles from './CreateCourse.module.css';
 
-const CreateCourse = ({ onCreateCourse }) => {
+const CreateCourse = ({ courses, setCourses }) => {
 	const [titleValue, setTitleValue] = useState('');
 	const [descriptionValue, setDescriptionValue] = useState('');
 	const [durationValue, setDurationValue] = useState('');
@@ -59,6 +59,14 @@ const CreateCourse = ({ onCreateCourse }) => {
 		return `${hours}:${minutes.toString().padStart(2, '0')}`;
 	};
 
+	const formatDate = (date) => {
+		const day = String(date.getDate()).padStart(2, '0');
+		const month = String(date.getMonth() + 1).padStart(2, '0');
+		const year = date.getFullYear();
+
+		return `${day}.${month}.${year}`;
+	};
+
 	const handleCreateAuthor = () => {
 		const newAuthor = {
 			id: Date.now().toString(),
@@ -83,12 +91,12 @@ const CreateCourse = ({ onCreateCourse }) => {
 			id: Date.now().toString(),
 			title: titleValue,
 			description: descriptionValue,
-			creationDate: new Date().toISOString(),
+			creationDate: formatDate(new Date()),
 			duration: parseInt(durationValue),
 			authors: courseAuthors.map((author) => author.id),
 		};
 
-		onCreateCourse(newCourse);
+		setCourses([...courses, newCourse]);
 		navigateCourses('/courses');
 	};
 

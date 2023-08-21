@@ -1,5 +1,5 @@
-import { Routes, Route, Outlet, Navigate } from 'react-router-dom';
 import { useState } from 'react';
+import { Routes, Route, Outlet, Navigate } from 'react-router-dom';
 
 import './App.css';
 
@@ -29,11 +29,7 @@ const Layout = () => {
 };
 
 const App = () => {
-	const [courses, setCourses] = useState([]);
-
-	const handleCreateCourse = (newCourse) => {
-		setCourses([...courses, newCourse]);
-	};
+	const [courses, setCourses] = useState(mockedCoursesList);
 
 	return (
 		<Routes>
@@ -41,24 +37,18 @@ const App = () => {
 				<Route
 					path='courses'
 					element={
-						<Courses
-							coursesList={mockedCoursesList}
-							authorsList={mockedAuthorsList}
-						/>
+						<Courses coursesList={courses} authorsList={mockedAuthorsList} />
 					}
 				/>
 				<Route
 					path='courses/:courseId'
 					element={
-						<CourseInfo
-							coursesList={mockedCoursesList}
-							authorsList={mockedAuthorsList}
-						/>
+						<CourseInfo coursesList={courses} authorsList={mockedAuthorsList} />
 					}
 				/>
 				<Route
 					path='courses/add'
-					element={<CreateCourse onCreateCourse={handleCreateCourse} />}
+					element={<CreateCourse courses={courses} setCourses={setCourses} />}
 				/>
 				<Route path='register' element={<Registration />} />
 				<Route path='login' element={<Login />} />
