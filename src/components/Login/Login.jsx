@@ -14,7 +14,7 @@ const Login = () => {
 	const [emailValid, setEmailValid] = useState(true);
 	const [passwordValid, setPasswordValid] = useState(true);
 
-	const navigate = useNavigate();
+	const navigateCourses = useNavigate();
 
 	const handleEmailChange = (value) => {
 		setEmailValue(value);
@@ -29,8 +29,9 @@ const Login = () => {
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 
-		if (emailValue === '' || passwordValid === '') {
+		if (emailValue === '' || passwordValue === '') {
 			setEmailValid(emailValue !== '');
+			setPasswordValid(passwordValid !== '');
 			return;
 		}
 
@@ -51,7 +52,7 @@ const Login = () => {
 			if (response.ok) {
 				const data = await response.json();
 				localStorage.setItem('token', data.result);
-				navigate('/courses');
+				navigateCourses('/courses');
 			}
 		} catch (error) {
 			console.error(error);

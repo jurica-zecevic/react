@@ -17,7 +17,7 @@ const Registration = () => {
 	const [emailValid, setEmailValid] = useState(true);
 	const [passwordValid, setPasswordValid] = useState(true);
 
-	const navigate = useNavigate();
+	const navigateLogin = useNavigate();
 
 	const handleNameChange = (value) => {
 		setNameValue(value);
@@ -59,7 +59,7 @@ const Registration = () => {
 			});
 
 			if (response.ok) {
-				navigate('/login');
+				navigateLogin('/login');
 			}
 		} catch (error) {
 			console.error(error);
