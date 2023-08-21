@@ -17,10 +17,10 @@ const CourseCard = ({
 	creationDate,
 	authorsList,
 }) => {
-	const navigate = useNavigate();
+	const navigateCourseDetails = useNavigate();
 
 	const showCourseDetails = () => {
-		navigate(`/courses/${id}`);
+		navigateCourseDetails(`/courses/${id}`);
 	};
 
 	return (
