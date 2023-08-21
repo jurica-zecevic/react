@@ -1,0 +1,16 @@
+.deleteBbtn,
+.addBbtn {
+  border: none;
+  background: none;
+  padding: 0.5em;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.deleteBbtn svg,
+.addBbtn svg {
+  width: 1em;
+  height: 1em;
+}
