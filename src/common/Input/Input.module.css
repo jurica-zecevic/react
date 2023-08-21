@@ -9,12 +9,6 @@
   transition: border 0.2s ease;
 }
 
-@media (min-width: 37.5em) {
-  .input {
-    width: 25em;
-  }
-}
-
 .input:focus {
   border-color: var(--color-primary-blue);
 }
