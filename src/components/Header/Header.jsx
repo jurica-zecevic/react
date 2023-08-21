@@ -14,7 +14,7 @@ const Header = () => {
 	useEffect(() => {
 		const token = localStorage.getItem('token');
 		setIsAuthorized(!!token);
-	}, []);
+	}, [location]);
 
 	const handleLogout = () => {
 		localStorage.removeItem('token');
