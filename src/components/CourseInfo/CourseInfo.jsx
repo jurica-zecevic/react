@@ -14,12 +14,12 @@ const CourseInfo = ({ coursesList, authorsList }) => {
 	const [course, setCourse] = useState(null);
 
 	useEffect(() => {
-		const foundCourse = coursesList.find((course) => course.id === courseId);
-		setCourse(foundCourse);
+		const clickedCourse = coursesList.find((course) => course.id === courseId);
+		setCourse(clickedCourse);
 	}, [courseId, coursesList]);
 
 	if (!course) {
-		return <div>Loading...</div>;
+		return <div>No courses found...</div>;
 	}
 
 	return (
@@ -65,7 +65,6 @@ const CourseInfo = ({ coursesList, authorsList }) => {
 			<div className={styles.linkContainer}>
 				<Link to='/courses' linkText='Back' />
 			</div>
-			<h2>Id that came from URL is {courseId}</h2>
 		</div>
 	);
 };
