@@ -5,3 +5,9 @@
 .form input {
   margin-right: 1em;
 }
+
+@media (min-width: 37.5em) {
+  .form input {
+    width: 25em;
+  }
+}
