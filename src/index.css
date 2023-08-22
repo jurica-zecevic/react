@@ -11,7 +11,7 @@
 
 @media (min-width: 37.5em) {
   #root {
-    gap: 4em;
+    gap: 3em;
   }
 }
 
@@ -37,7 +37,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-body * {
+* {
   box-sizing: border-box;
 }
 
