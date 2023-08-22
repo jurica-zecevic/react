@@ -10,51 +10,48 @@ import styles from './Registration.module.css';
 
 const Registration = () => {
 	const url = `${BASE_URL}/register`;
+	const navigateLogin = useNavigate();
 
-	const [nameValue, setNameValue] = useState('');
-	const [emailValue, setEmailValue] = useState('');
-	const [passwordValue, setPasswordValue] = useState('');
-	const [nameValid, isNameValid] = useState(true);
-	const [emailValid, isEmailValid] = useState(true);
-	const [passwordValid, isPasswordValid] = useState(true);
+	const [formData, setFormData] = useState({
+		name: '',
+		email: '',
+		password: '',
+	});
+	const [formValidation, setFormValidation] = useState({
+		nameValid: true,
+		emailValid: true,
+		passwordValid: true,
+	});
+
 	const [hasResponseError, setResponseError] = useState(false);
 	const [responseErrorText, setResponseErrorText] = useState('');
 
-	const navigateLogin = useNavigate();
-
-	const handleNameChange = (value) => {
-		setNameValue(value);
-		isNameValid(value !== '');
+	const handleInputChange = (event) => {
+		const { name, value } = event.target;
+		setFormData({ ...formData, [name]: value });
 	};
 
-	const handleEmailChange = (value) => {
-		setEmailValue(value);
-		isEmailValid(value !== '');
-	};
+	const isFormValid = () => {
+		const nameValid = formData.name !== '';
+		const emailValid = formData.email !== '';
+		const passwordValid = passwordPattern.test(formData.password);
 
-	const checkPassword = (value) => {
-		setPasswordValue(value);
-		isPasswordValid(passwordPattern.test(value));
+		setFormValidation({ nameValid, emailValid, passwordValid });
+
+		return nameValid && emailValid && passwordValid;
 	};
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 
-		if (nameValue === '' || emailValue === '' || !passwordValid) {
-			isNameValid(nameValue !== '');
-			isEmailValid(emailValue !== '');
+		if (!isFormValid()) {
+			return;
 		}
-
-		const newUser = {
-			name: nameValue,
-			email: emailValue,
-			password: passwordValue,
-		};
 
 		try {
 			const response = await fetch(url, {
 				method: 'POST',
-				body: JSON.stringify(newUser),
+				body: JSON.stringify(formData),
 				headers: {
 					'Content-Type': 'application/json',
 				},
@@ -79,40 +76,50 @@ const Registration = () => {
 					Name
 					<Input
 						id='reg-form-name'
-						style={{ borderColor: !nameValid && 'var(--color-red)' }}
+						name='name'
+						style={{
+							borderColor: !formValidation.nameValid && 'var(--color-red)',
+						}}
 						type='text'
 						placeholder='Enter name...'
-						value={nameValue}
-						required
-						onChange={({ target }) => handleNameChange(target.value)}
+						value={formData.name}
+						onChange={handleInputChange}
 					/>
-					{!nameValid && <p className={styles.invalid}>Name is required.</p>}
+					{!formValidation.nameValid && (
+						<p className={styles.invalid}>Name is required.</p>
+					)}
 				</label>
 				<label className={styles.formLabel} htmlFor='reg-form-email'>
 					Email
 					<Input
 						id='reg-form-email'
-						style={{ borderColor: !emailValid && 'var(--color-red)' }}
+						name='email'
+						style={{
+							borderColor: !formValidation.emailValid && 'var(--color-red)',
+						}}
 						type='text'
 						placeholder='Enter email address...'
-						value={emailValue}
-						required
-						onChange={({ target }) => handleEmailChange(target.value)}
+						value={formData.email}
+						onChange={handleInputChange}
 					/>
-					{!emailValid && <p className={styles.invalid}>Email is required.</p>}
+					{!formValidation.emailValid && (
+						<p className={styles.invalid}>Email is required.</p>
+					)}
 				</label>
 				<label className={styles.formLabel} htmlFor='reg-form-password'>
 					Password
 					<Input
 						id='reg-form-password'
-						style={{ borderColor: !passwordValid && 'var(--color-red)' }}
+						name='password'
+						style={{
+							borderColor: !formValidation.passwordValid && 'var(--color-red)',
+						}}
 						type='password'
 						placeholder='Only letters and 6 chars min...'
-						value={passwordValue}
-						required
-						onChange={({ target }) => checkPassword(target.value)}
+						value={formData.password}
+						onChange={handleInputChange}
 					/>
-					{!passwordValid && (
+					{!formValidation.passwordValid && (
 						<p className={styles.invalid}>Password is required.</p>
 					)}
 				</label>
