@@ -88,7 +88,7 @@ const Login = () => {
 					<Input
 						id='reg-form-password'
 						style={{ borderColor: !passwordValid && 'var(--color-red)' }}
-						type='current-password'
+						type='password'
 						placeholder='Enter password...'
 						value={passwordValue}
 						required
