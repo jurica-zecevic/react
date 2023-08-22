@@ -65,7 +65,7 @@ CourseCard.propTypes = {
 	authors: PropTypes.array,
 	duration: PropTypes.number,
 	creationDate: PropTypes.string,
-	authorsList: PropTypes.object,
+	authorsList: PropTypes.array,
 };
 
 export default CourseCard;

@@ -17,6 +17,8 @@ const Registration = () => {
 	const [nameValid, isNameValid] = useState(true);
 	const [emailValid, isEmailValid] = useState(true);
 	const [passwordValid, isPasswordValid] = useState(true);
+	const [hasResponseError, setResponseError] = useState(false);
+	const [responseErrorText, setResponseErrorText] = useState('');
 
 	const navigateLogin = useNavigate();
 
@@ -41,7 +43,6 @@ const Registration = () => {
 		if (nameValue === '' || emailValue === '' || !passwordValid) {
 			isNameValid(nameValue !== '');
 			isEmailValid(emailValue !== '');
-			return;
 		}
 
 		const newUser = {
@@ -59,7 +60,10 @@ const Registration = () => {
 				},
 			});
 
-			if (response.ok) {
+			if (!response.ok) {
+				setResponseError(true);
+				setResponseErrorText(response.statusText);
+			} else {
 				navigateLogin('/login');
 			}
 		} catch (error) {
@@ -116,6 +120,11 @@ const Registration = () => {
 				<p>
 					If you have an account you may <Link to='/login'>Login</Link>
 				</p>
+				{hasResponseError && (
+					<p className={styles.invalid}>
+						Sorry, Registration failed! Reason: {responseErrorText}
+					</p>
+				)}
 			</form>
 		</div>
 	);
