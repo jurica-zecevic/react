@@ -12,12 +12,12 @@ const Registration = () => {
 	const url = `${BASE_URL}/register`;
 	const navigateLogin = useNavigate();
 
-	const [formData, setFormData] = useState({
+	const [formValues, setFormValues] = useState({
 		name: '',
 		email: '',
 		password: '',
 	});
-	const [formValidation, setFormValidation] = useState({
+	const [formValid, setFormValid] = useState({
 		nameValid: true,
 		emailValid: true,
 		passwordValid: true,
@@ -28,15 +28,15 @@ const Registration = () => {
 
 	const handleInputChange = (event) => {
 		const { name, value } = event.target;
-		setFormData({ ...formData, [name]: value });
+		setFormValues({ ...formValues, [name]: value });
 	};
 
 	const isFormValid = () => {
-		const nameValid = formData.name !== '';
-		const emailValid = formData.email !== '';
-		const passwordValid = passwordPattern.test(formData.password);
+		const nameValid = formValues.name !== '';
+		const emailValid = formValues.email !== '';
+		const passwordValid = passwordPattern.test(formValues.password);
 
-		setFormValidation({ nameValid, emailValid, passwordValid });
+		setFormValid({ nameValid, emailValid, passwordValid });
 
 		return nameValid && emailValid && passwordValid;
 	};
@@ -51,7 +51,7 @@ const Registration = () => {
 		try {
 			const response = await fetch(url, {
 				method: 'POST',
-				body: JSON.stringify(formData),
+				body: JSON.stringify(formValues),
 				headers: {
 					'Content-Type': 'application/json',
 				},
@@ -78,14 +78,14 @@ const Registration = () => {
 						id='reg-form-name'
 						name='name'
 						style={{
-							borderColor: !formValidation.nameValid && 'var(--color-red)',
+							borderColor: !formValid.nameValid && 'var(--color-red)',
 						}}
 						type='text'
 						placeholder='Enter name...'
-						value={formData.name}
+						value={formValues.name}
 						onChange={handleInputChange}
 					/>
-					{!formValidation.nameValid && (
+					{!formValid.nameValid && (
 						<p className={styles.invalid}>Name is required.</p>
 					)}
 				</label>
@@ -95,14 +95,14 @@ const Registration = () => {
 						id='reg-form-email'
 						name='email'
 						style={{
-							borderColor: !formValidation.emailValid && 'var(--color-red)',
+							borderColor: !formValid.emailValid && 'var(--color-red)',
 						}}
 						type='text'
 						placeholder='Enter email address...'
-						value={formData.email}
+						value={formValues.email}
 						onChange={handleInputChange}
 					/>
-					{!formValidation.emailValid && (
+					{!formValid.emailValid && (
 						<p className={styles.invalid}>Email is required.</p>
 					)}
 				</label>
@@ -112,14 +112,14 @@ const Registration = () => {
 						id='reg-form-password'
 						name='password'
 						style={{
-							borderColor: !formValidation.passwordValid && 'var(--color-red)',
+							borderColor: !formValid.passwordValid && 'var(--color-red)',
 						}}
 						type='password'
 						placeholder='Only letters and 6 chars min...'
-						value={formData.password}
+						value={formValues.password}
 						onChange={handleInputChange}
 					/>
-					{!formValidation.passwordValid && (
+					{!formValid.passwordValid && (
 						<p className={styles.invalid}>Password is required.</p>
 					)}
 				</label>
