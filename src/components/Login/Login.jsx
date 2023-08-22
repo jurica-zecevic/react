@@ -23,7 +23,7 @@ const Login = () => {
 		isEmailValid(value !== '');
 	};
 
-	const handlePasswordChange = (value) => {
+	const checkPassword = (value) => {
 		setPasswordValue(value);
 		isPasswordValid(value !== '');
 	};
@@ -87,7 +87,7 @@ const Login = () => {
 						placeholder='Enter password...'
 						value={passwordValue}
 						required
-						onChange={({ target }) => handlePasswordChange(target.value)}
+						onChange={({ target }) => checkPassword(target.value)}
 					/>
 					{!passwordValid && (
 						<p className={styles.invalid}>Password is required.</p>

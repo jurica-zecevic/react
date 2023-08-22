@@ -30,7 +30,7 @@ const Registration = () => {
 		isEmailValid(value !== '');
 	};
 
-	const handlePasswordChange = (value) => {
+	const checkPassword = (value) => {
 		setPasswordValue(value);
 		isPasswordValid(passwordPattern.test(value));
 	};
@@ -106,7 +106,7 @@ const Registration = () => {
 						placeholder='Only letters and 6 chars min...'
 						value={passwordValue}
 						required
-						onChange={({ target }) => handlePasswordChange(target.value)}
+						onChange={({ target }) => checkPassword(target.value)}
 					/>
 					{!passwordValid && (
 						<p className={styles.invalid}>Password is required.</p>
