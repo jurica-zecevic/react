@@ -64,7 +64,6 @@ const CreateCourse = ({ courses, setCourses }) => {
 		};
 		setAuthors([...authors, newAuthor]);
 		setAuthorNameValue('');
-		isAuthorNameValid(true);
 	};
 
 	const handleCreateCourse = (event) => {

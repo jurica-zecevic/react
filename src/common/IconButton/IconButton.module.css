@@ -1,5 +1,4 @@
-.deleteBbtn,
-.addBbtn {
+.iconButton {
   border: none;
   background: none;
   padding: 0.5em;
@@ -9,8 +8,7 @@
   cursor: pointer;
 }
 
-.deleteBbtn svg,
-.addBbtn svg {
+.iconButton svg {
   width: 1em;
   height: 1em;
 }

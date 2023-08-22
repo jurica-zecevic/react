@@ -26,7 +26,7 @@ const CourseInfo = ({ coursesList, authorsList }) => {
 
 	return (
 		<div className={styles.course}>
-			{<h1>{course.title}</h1>}
+			<h1>{course.title}</h1>
 			<div className={styles.courseCard}>
 				<div className={styles.courseHeader}>
 					<h2>Description:</h2>
