@@ -106,7 +106,7 @@ const Registration = () => {
 					<Input
 						id='reg-form-password'
 						style={{ borderColor: !passwordValid && 'var(--color-red)' }}
-						type='current-password'
+						type='password'
 						placeholder='Only letters and 6 chars min...'
 						value={passwordValue}
 						required
