@@ -72,8 +72,8 @@ const CourseInfo = ({ coursesList, authorsList }) => {
 };
 
 CourseInfo.propTypes = {
-	coursesList: PropTypes.object,
-	authorsList: PropTypes.object,
+	coursesList: PropTypes.array,
+	authorsList: PropTypes.array,
 };
 
 export default CourseInfo;

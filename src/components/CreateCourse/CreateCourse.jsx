@@ -232,8 +232,8 @@ const CreateCourse = ({ courses, setCourses }) => {
 };
 
 CreateCourse.propTypes = {
-	courses: PropTypes.object,
-	setCourses: PropTypes.object,
+	courses: PropTypes.array,
+	setCourses: PropTypes.func,
 };
 
 export default CreateCourse;
