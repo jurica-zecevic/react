@@ -52,6 +52,7 @@ const App = () => {
 				/>
 				<Route path='register' element={<Registration />} />
 				<Route path='login' element={<Login />} />
+				<Route path='/' element={<Navigate to='/login' />} />
 				{token && <Route path='/' element={<Navigate to='/courses' />} />}
 			</Route>
 		</Routes>
