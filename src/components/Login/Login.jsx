@@ -1,13 +1,15 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
+import { BASE_URL } from '../../constants';
+
 import Button from '../../common/Button/Button';
 import Input from '../../common/Input/Input';
 
 import styles from './Login.module.css';
 
 const Login = () => {
-	const url = 'http://localhost:4000/login';
+	const url = `${BASE_URL}/login`;
 
 	const [emailValue, setEmailValue] = useState('');
 	const [passwordValue, setPasswordValue] = useState('');

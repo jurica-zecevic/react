@@ -1,14 +1,15 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
+import { BASE_URL, passwordPattern } from '../../constants';
+
 import Button from '../../common/Button/Button';
 import Input from '../../common/Input/Input';
 
 import styles from './Registration.module.css';
 
 const Registration = () => {
-	const url = 'http://localhost:4000/register';
-	const passwordPattern = /^[a-zA-Z]{6,}$/;
+	const url = `${BASE_URL}/register`;
 
 	const [nameValue, setNameValue] = useState('');
 	const [emailValue, setEmailValue] = useState('');
