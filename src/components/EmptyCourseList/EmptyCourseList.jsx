@@ -15,14 +15,16 @@ const EmptyCourseList = ({ userRole }) => {
 
 	return (
 		<section className={styles.empty}>
-			<h1>Your List Is Empty</h1>
-			<p>Please use ’Add New Course’ button to add your first course</p>
 			{userRole === 'admin' ? (
-				<Button
-					type='button'
-					buttonText='Add new course'
-					onClick={handleAddNewCourse}
-				/>
+				<>
+					<h1>Your List Is Empty</h1>
+					<p>Please use ’Add New Course’ button to add your first course</p>
+					<Button
+						type='button'
+						buttonText='Add new course'
+						onClick={handleAddNewCourse}
+					/>
+				</>
 			) : (
 				<p>
 					You don't have permissions to create a course. Please log in as ADMIN
