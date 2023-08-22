@@ -80,7 +80,6 @@ const Login = () => {
 						type='text'
 						placeholder='Enter email address...'
 						value={formValues.email}
-						required
 						onChange={handleInputChange}
 					/>
 					{!formValid.emailValid && (
@@ -98,7 +97,6 @@ const Login = () => {
 						type='password'
 						placeholder='Enter password...'
 						value={formValues.password}
-						required
 						onChange={handleInputChange}
 					/>
 					{!formValid.passwordValid && (
