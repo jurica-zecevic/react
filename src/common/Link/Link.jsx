@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 import styles from './Link.module.css';
 
-const Button = ({ linkText, ...attributes }) => {
+const LinkEl = ({ linkText, ...attributes }) => {
 	return (
 		<Link className={styles.link} {...attributes}>
 			{linkText}
@@ -10,4 +10,4 @@ const Button = ({ linkText, ...attributes }) => {
 	);
 };
 
-export default Button;
+export default LinkEl;
