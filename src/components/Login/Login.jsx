@@ -10,44 +10,44 @@ import styles from './Login.module.css';
 
 const Login = () => {
 	const url = `${BASE_URL}/login`;
+	const navigateCourses = useNavigate();
 
-	const [emailValue, setEmailValue] = useState('');
-	const [passwordValue, setPasswordValue] = useState('');
-	const [emailValid, isEmailValid] = useState(true);
-	const [passwordValid, isPasswordValid] = useState(true);
+	const [formValues, setFormValues] = useState({
+		email: '',
+		password: '',
+	});
+	const [formValid, setFormValid] = useState({
+		emailValid: true,
+		passwordValid: true,
+	});
 	const [hasResponseError, setResponseError] = useState(false);
 	const [responseErrorText, setResponseErrorText] = useState('');
 
-	const navigateCourses = useNavigate();
-
-	const handleEmailChange = (value) => {
-		setEmailValue(value);
-		isEmailValid(value !== '');
+	const handleInputChange = (event) => {
+		const { name, value } = event.target;
+		setFormValues({ ...formValues, [name]: value });
 	};
 
-	const checkPassword = (value) => {
-		setPasswordValue(value);
-		isPasswordValid(value !== '');
+	const isFormValid = () => {
+		const emailValid = formValues.email !== '';
+		const passwordValid = formValues.password !== '';
+
+		setFormValid({ emailValid, passwordValid });
+
+		return emailValid && passwordValid;
 	};
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 
-		if (emailValue === '' || passwordValue === '') {
-			isEmailValid(emailValue !== '');
-			isPasswordValid(passwordValid !== '');
+		if (!isFormValid()) {
 			return;
 		}
-
-		const currentUser = {
-			email: emailValue,
-			password: passwordValue,
-		};
 
 		try {
 			const response = await fetch(url, {
 				method: 'POST',
-				body: JSON.stringify(currentUser),
+				body: JSON.stringify(formValues),
 				headers: {
 					'Content-Type': 'application/json',
 				},
@@ -75,27 +75,33 @@ const Login = () => {
 					Email
 					<Input
 						id='reg-form-email'
-						style={{ borderColor: !emailValid && 'var(--color-red)' }}
+						name='email'
+						style={{ borderColor: !formValid.emailValid && 'var(--color-red)' }}
 						type='text'
 						placeholder='Enter email address...'
-						value={emailValue}
+						value={formValues.email}
 						required
-						onChange={({ target }) => handleEmailChange(target.value)}
+						onChange={handleInputChange}
 					/>
-					{!emailValid && <p className={styles.invalid}>Email is required.</p>}
+					{!formValid.emailValid && (
+						<p className={styles.invalid}>Email is required.</p>
+					)}
 				</label>
 				<label className={styles.formLabel} htmlFor='reg-form-password'>
 					Password
 					<Input
 						id='reg-form-password'
-						style={{ borderColor: !passwordValid && 'var(--color-red)' }}
+						name='password'
+						style={{
+							borderColor: !formValid.passwordValid && 'var(--color-red)',
+						}}
 						type='password'
 						placeholder='Enter password...'
-						value={passwordValue}
+						value={formValues.password}
 						required
-						onChange={({ target }) => checkPassword(target.value)}
+						onChange={handleInputChange}
 					/>
-					{!passwordValid && (
+					{!formValid.passwordValid && (
 						<p className={styles.invalid}>Password is required.</p>
 					)}
 				</label>
