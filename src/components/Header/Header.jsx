@@ -10,6 +10,7 @@ const Header = () => {
 	const [isUserAuthenticated, setUserAuthenticated] = useState(false);
 	const navigate = useNavigate();
 	const location = useLocation();
+	const userName = localStorage.getItem('userName');
 
 	useEffect(() => {
 		const token = localStorage.getItem('token');
@@ -18,6 +19,7 @@ const Header = () => {
 
 	const handleLogout = () => {
 		localStorage.removeItem('token');
+		localStorage.removeItem('userName');
 		setUserAuthenticated(false);
 		navigate('/login');
 	};
@@ -34,9 +36,7 @@ const Header = () => {
 	return (
 		<header className={styles.header}>
 			<Logo />
-			{isUserAuthenticated && shouldShowAuthElements && (
-				<span>Jurica Zečević</span>
-			)}
+			{isUserAuthenticated && shouldShowAuthElements && <span>{userName}</span>}
 			{shouldShowAuthElements && (
 				<Button
 					type='button'

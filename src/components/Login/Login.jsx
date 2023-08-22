@@ -59,6 +59,7 @@ const Login = () => {
 			} else {
 				const data = await response.json();
 				localStorage.setItem('token', data.result);
+				localStorage.setItem('userName', data.user.name);
 				navigateCourses('/courses');
 			}
 		} catch (error) {
