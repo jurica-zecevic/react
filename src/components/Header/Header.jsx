@@ -38,11 +38,13 @@ const Header = () => {
 			<Logo />
 			{isUserAuthenticated && shouldShowAuthElements && <span>{userName}</span>}
 			{shouldShowAuthElements && (
-				<Button
-					type='button'
-					buttonText={isUserAuthenticated ? 'Logout' : 'Login'}
-					onClick={isUserAuthenticated ? handleLogout : handleLogin}
-				/>
+				<>
+					{isUserAuthenticated ? (
+						<Button type='button' buttonText='Logout' onClick={handleLogout} />
+					) : (
+						<Button type='button' buttonText='Login' onClick={handleLogin} />
+					)}
+				</>
 			)}
 		</header>
 	);
