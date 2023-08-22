@@ -15,6 +15,8 @@ const Login = () => {
 	const [passwordValue, setPasswordValue] = useState('');
 	const [emailValid, isEmailValid] = useState(true);
 	const [passwordValid, isPasswordValid] = useState(true);
+	const [hasResponseError, setResponseError] = useState(false);
+	const [responseErrorText, setResponseErrorText] = useState('');
 
 	const navigateCourses = useNavigate();
 
@@ -51,7 +53,10 @@ const Login = () => {
 				},
 			});
 
-			if (response.ok) {
+			if (!response.ok) {
+				setResponseError(true);
+				setResponseErrorText(response.statusText);
+			} else {
 				const data = await response.json();
 				localStorage.setItem('token', data.result);
 				navigateCourses('/courses');
@@ -98,6 +103,11 @@ const Login = () => {
 					If you don't have an account you may{' '}
 					<Link to='/register'>Register</Link>
 				</p>
+				{hasResponseError && (
+					<p className={styles.invalid}>
+						Sorry, Login failed! Reason: {responseErrorText}
+					</p>
+				)}
 			</form>
 		</div>
 	);
