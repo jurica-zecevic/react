@@ -11,27 +11,27 @@ const Login = () => {
 
 	const [emailValue, setEmailValue] = useState('');
 	const [passwordValue, setPasswordValue] = useState('');
-	const [emailValid, setEmailValid] = useState(true);
-	const [passwordValid, setPasswordValid] = useState(true);
+	const [emailValid, isEmailValid] = useState(true);
+	const [passwordValid, isPasswordValid] = useState(true);
 
 	const navigateCourses = useNavigate();
 
 	const handleEmailChange = (value) => {
 		setEmailValue(value);
-		setEmailValid(value !== '');
+		isEmailValid(value !== '');
 	};
 
 	const handlePasswordChange = (value) => {
 		setPasswordValue(value);
-		setPasswordValid(value !== '');
+		isPasswordValid(value !== '');
 	};
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 
 		if (emailValue === '' || passwordValue === '') {
-			setEmailValid(emailValue !== '');
-			setPasswordValid(passwordValid !== '');
+			isEmailValid(emailValue !== '');
+			isPasswordValid(passwordValid !== '');
 			return;
 		}
 

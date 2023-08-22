@@ -13,33 +13,33 @@ const Registration = () => {
 	const [nameValue, setNameValue] = useState('');
 	const [emailValue, setEmailValue] = useState('');
 	const [passwordValue, setPasswordValue] = useState('');
-	const [nameValid, setNameValid] = useState(true);
-	const [emailValid, setEmailValid] = useState(true);
-	const [passwordValid, setPasswordValid] = useState(true);
+	const [nameValid, isNameValid] = useState(true);
+	const [emailValid, isEmailValid] = useState(true);
+	const [passwordValid, isPasswordValid] = useState(true);
 
 	const navigateLogin = useNavigate();
 
 	const handleNameChange = (value) => {
 		setNameValue(value);
-		setNameValid(value !== '');
+		isNameValid(value !== '');
 	};
 
 	const handleEmailChange = (value) => {
 		setEmailValue(value);
-		setEmailValid(value !== '');
+		isEmailValid(value !== '');
 	};
 
 	const handlePasswordChange = (value) => {
 		setPasswordValue(value);
-		setPasswordValid(passwordPattern.test(value));
+		isPasswordValid(passwordPattern.test(value));
 	};
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 
 		if (nameValue === '' || emailValue === '' || !passwordValid) {
-			setNameValid(nameValue !== '');
-			setEmailValid(emailValue !== '');
+			isNameValid(nameValue !== '');
+			isEmailValid(emailValue !== '');
 			return;
 		}
 

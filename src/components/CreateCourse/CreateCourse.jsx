@@ -19,31 +19,31 @@ const CreateCourse = ({ courses, setCourses }) => {
 	const [authorNameValue, setAuthorNameValue] = useState('');
 	const [authors, setAuthors] = useState([]);
 	const [courseAuthors, setCourseAuthors] = useState([]);
-	const [titleValid, setTitleValid] = useState(true);
-	const [descriptionValid, setDescriptionValid] = useState(true);
-	const [durationValid, setDurationValid] = useState(true);
-	const [authorNameValid, setAuthorNameValid] = useState(true);
+	const [titleValid, isTitleValid] = useState(true);
+	const [descriptionValid, isDescriptionValid] = useState(true);
+	const [durationValid, isDurationValid] = useState(true);
+	const [authorNameValid, isAuthorNameValid] = useState(true);
 
 	const navigateCourses = useNavigate();
 
 	const handleTitleChange = (value) => {
 		setTitleValue(value);
-		setTitleValid(validateNewCourseField(value));
+		isTitleValid(validateNewCourseField(value));
 	};
 
 	const handleDescriptionChange = (value) => {
 		setDescriptionValue(value);
-		setDescriptionValid(validateNewCourseField(value));
+		isDescriptionValid(validateNewCourseField(value));
 	};
 
 	const handleDurationChange = (value) => {
 		setDurationValue(value);
-		setDurationValid(validateNewCourseField(value));
+		isDurationValid(validateNewCourseField(value));
 	};
 
 	const handleAuthorNameChange = (value) => {
 		setAuthorNameValue(value);
-		setAuthorNameValid(validateNewCourseField(value));
+		isAuthorNameValid(validateNewCourseField(value));
 	};
 
 	const handleAddAuthor = (author) => {
@@ -76,16 +76,16 @@ const CreateCourse = ({ courses, setCourses }) => {
 		};
 		setAuthors([...authors, newAuthor]);
 		setAuthorNameValue('');
-		setAuthorNameValid(true);
+		isAuthorNameValid(true);
 	};
 
 	const handleCreateCourse = (event) => {
 		event.preventDefault();
 
 		if (titleValue === '' || descriptionValue === '' || durationValue === '') {
-			setTitleValid(titleValue !== '');
-			setDescriptionValid(descriptionValue !== '');
-			setDurationValid(durationValue !== '');
+			isTitleValid(titleValue !== '');
+			isDescriptionValid(descriptionValue !== '');
+			isDurationValid(durationValue !== '');
 			return;
 		}
 
