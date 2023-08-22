@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import { validateNewCourseField } from '../../helpers/newCourseValidation';
+import { formatNewCourseDuration } from '../../helpers/formatNewCourseDuration';
+import { formatNewCourseDate } from '../../helpers/formatNewCourseDate';
 
 import AuthorItem from './components/AuthorItem';
 import Button from '../../common/Button/Button';
@@ -55,20 +57,6 @@ const CreateCourse = ({ courses, setCourses }) => {
 		setCourseAuthors(courseAuthors.filter((a) => a.id !== author.id));
 	};
 
-	const formatDuration = (duration) => {
-		const hours = Math.floor(duration / 60);
-		const minutes = duration % 60;
-		return `${hours}:${minutes.toString().padStart(2, '0')}`;
-	};
-
-	const formatDate = (date) => {
-		const day = String(date.getDate()).padStart(2, '0');
-		const month = String(date.getMonth() + 1).padStart(2, '0');
-		const year = date.getFullYear();
-
-		return `${day}.${month}.${year}`;
-	};
-
 	const handleCreateAuthor = () => {
 		const newAuthor = {
 			id: Date.now().toString(),
@@ -93,7 +81,7 @@ const CreateCourse = ({ courses, setCourses }) => {
 			id: Date.now().toString(),
 			title: titleValue,
 			description: descriptionValue,
-			creationDate: formatDate(new Date()),
+			creationDate: formatNewCourseDate(new Date()),
 			duration: parseInt(durationValue),
 			authors: courseAuthors.map((author) => author.id),
 		};
@@ -157,7 +145,7 @@ const CreateCourse = ({ courses, setCourses }) => {
 						)}
 					</label>
 					<p className={styles.durationText}>
-						<span>{formatDuration(durationValue)}</span> hours
+						<span>{formatNewCourseDuration(durationValue)}</span> hours
 					</p>
 				</div>
 				<div className={styles.authors}>
