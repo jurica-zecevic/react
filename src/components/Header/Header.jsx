@@ -7,23 +7,23 @@ import Logo from './components/Logo/Logo';
 import Button from '../../common/Button/Button';
 
 const Header = () => {
-	const [isAuthorized, setIsAuthorized] = useState(false);
+	const [isUserAuthenticated, setUserAuthenticated] = useState(false);
 	const navigate = useNavigate();
 	const location = useLocation();
 
 	useEffect(() => {
 		const token = localStorage.getItem('token');
-		setIsAuthorized(!!token);
+		setUserAuthenticated(!!token);
 	}, [location]);
 
 	const handleLogout = () => {
 		localStorage.removeItem('token');
-		setIsAuthorized(false);
+		setUserAuthenticated(false);
 		navigate('/login');
 	};
 
 	const handleLogin = () => {
-		setIsAuthorized(true);
+		setUserAuthenticated(true);
 		navigate('/courses');
 	};
 
@@ -34,12 +34,14 @@ const Header = () => {
 	return (
 		<header className={styles.header}>
 			<Logo />
-			{isAuthorized && shouldShowAuthElements && <span>Jurica Zečević</span>}
+			{isUserAuthenticated && shouldShowAuthElements && (
+				<span>Jurica Zečević</span>
+			)}
 			{shouldShowAuthElements && (
 				<Button
 					type='button'
-					buttonText={isAuthorized ? 'Logout' : 'Login'}
-					onClick={isAuthorized ? handleLogout : handleLogin}
+					buttonText={isUserAuthenticated ? 'Logout' : 'Login'}
+					onClick={isUserAuthenticated ? handleLogout : handleLogin}
 				/>
 			)}
 		</header>
