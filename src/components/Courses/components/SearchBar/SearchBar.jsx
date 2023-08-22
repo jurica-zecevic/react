@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 
+import PropTypes from 'prop-types';
+
 import Input from '../../../../common/Input/Input';
 import Button from '../../../../common/Button/Button';
 
@@ -35,6 +37,10 @@ const SearchBar = ({ onSearch }) => {
 			<Button type='submit' buttonText='Search' />
 		</form>
 	);
+};
+
+SearchBar.propTypes = {
+	onSearch: PropTypes.func,
 };
 
 export default SearchBar;

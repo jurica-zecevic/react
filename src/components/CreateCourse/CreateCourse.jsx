@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import PropTypes from 'prop-types';
+
 import { validateNewCourseField } from '../../helpers/newCourseValidation';
 
 import AuthorItem from './components/AuthorItem';
@@ -227,6 +229,11 @@ const CreateCourse = ({ courses, setCourses }) => {
 			</div>
 		</div>
 	);
+};
+
+CreateCourse.propTypes = {
+	courses: PropTypes.object,
+	setCourses: PropTypes.object,
 };
 
 export default CreateCourse;

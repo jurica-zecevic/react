@@ -1,5 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 
+import PropTypes from 'prop-types';
+
 import styles from './CourseCard.module.css';
 
 import Button from '../../../../common/Button/Button';
@@ -54,6 +56,16 @@ const CourseCard = ({
 			</div>
 		</div>
 	);
+};
+
+CourseCard.propTypes = {
+	id: PropTypes.string,
+	title: PropTypes.string,
+	description: PropTypes.string,
+	authors: PropTypes.array,
+	duration: PropTypes.number,
+	creationDate: PropTypes.string,
+	authorsList: PropTypes.object,
 };
 
 export default CourseCard;

@@ -1,6 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
+import PropTypes from 'prop-types';
+
 import SearchBar from './components/SearchBar/SearchBar';
 import EmptyCourseList from '../EmptyCourseList/EmptyCourseList';
 import CourseCard from './components/CourseCard/CourseCard';
@@ -64,6 +66,11 @@ const Courses = ({ coursesList, authorsList }) => {
 			)}
 		</>
 	);
+};
+
+Courses.propTypes = {
+	coursesList: PropTypes.object,
+	authorsList: PropTypes.object,
 };
 
 export default Courses;

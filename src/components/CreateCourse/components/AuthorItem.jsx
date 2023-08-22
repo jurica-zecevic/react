@@ -1,5 +1,7 @@
 import styles from './AuthorItem.module.css';
 
+import PropTypes from 'prop-types';
+
 const AuthorItem = ({ author, onAdd, onDelete }) => {
 	return (
 		<div className={styles.authorItem}>
@@ -50,6 +52,12 @@ const AuthorItem = ({ author, onAdd, onDelete }) => {
 			</button>
 		</div>
 	);
+};
+
+AuthorItem.propTypes = {
+	author: PropTypes.string,
+	onAdd: PropTypes.func,
+	onDelete: PropTypes.func,
 };
 
 export default AuthorItem;

@@ -1,5 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 
+import PropTypes from 'prop-types';
+
 import Button from '../../common/Button/Button';
 
 import styles from './EmptyCourseList.module.css';
@@ -28,6 +30,10 @@ const EmptyCourseList = ({ userRole }) => {
 			)}
 		</section>
 	);
+};
+
+EmptyCourseList.propTypes = {
+	userRole: PropTypes.string,
 };
 
 export default EmptyCourseList;

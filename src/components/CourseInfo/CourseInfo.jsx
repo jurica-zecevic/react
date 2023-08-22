@@ -1,6 +1,8 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
+import PropTypes from 'prop-types';
+
 import styles from './CourseInfo.module.css';
 
 import Link from '../../common/Link/Link';
@@ -67,6 +69,11 @@ const CourseInfo = ({ coursesList, authorsList }) => {
 			</div>
 		</div>
 	);
+};
+
+CourseInfo.propTypes = {
+	coursesList: PropTypes.object,
+	authorsList: PropTypes.object,
 };
 
 export default CourseInfo;
