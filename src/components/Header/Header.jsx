@@ -7,25 +7,25 @@ import Logo from './components/Logo/Logo';
 import Button from '../../common/Button/Button';
 
 const Header = () => {
-	const [isUserAuthenticated, setUserAuthenticated] = useState(false);
+	const [isUserAuthenticated, setIsUserAuthenticated] = useState(false);
 	const navigate = useNavigate();
 	const location = useLocation();
 	const userName = localStorage.getItem('userName');
 
 	useEffect(() => {
 		const token = localStorage.getItem('token');
-		setUserAuthenticated(!!token);
+		setIsUserAuthenticated(!!token);
 	}, [location]);
 
 	const handleLogout = () => {
 		localStorage.removeItem('token');
 		localStorage.removeItem('userName');
-		setUserAuthenticated(false);
+		setIsUserAuthenticated(false);
 		navigate('/login');
 	};
 
 	const handleLogin = () => {
-		setUserAuthenticated(true);
+		setIsUserAuthenticated(true);
 		navigate('/courses');
 	};
 
