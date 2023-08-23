@@ -12,6 +12,7 @@ import CourseInfo from './components/CourseInfo/CourseInfo';
 import CreateCourse from './components/CreateCourse/CreateCourse';
 import Registration from './components/Registration/Registration';
 import Login from './components/Login/Login';
+import Footer from './components/Footer/Footer';
 
 const token = localStorage.getItem('token');
 
@@ -24,6 +25,7 @@ const Layout = () => {
 					<Outlet />
 				</Container>
 			</main>
+			<Footer />
 		</>
 	);
 };
