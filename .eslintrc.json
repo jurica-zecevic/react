@@ -22,6 +22,7 @@
         "semi": true,
         "jsxSingleQuote": true,
         "singleQuote": true,
+        "eol-last": "always",
         "useTabs": true,
         "endOfLine": "auto",
         "max-len": ["error", { "code": 80 }],
