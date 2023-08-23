@@ -1,0 +1,56 @@
+.registrationFormWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.registrationFormWrapper h1 {
+  margin-top: 0;
+}
+
+.registrationForm {
+  display: flex;
+  flex-direction: column;
+  padding: 2em 3em;
+  background-color: var(--color-white);
+  border: 1px solid var(--color-goose-gray);
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+@media (min-width: 37.5em) {
+  .registrationForm {
+    width: 36.5625em;
+    padding: 6.25em 9.375em;
+  }
+}
+
+.formLabel {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1em;
+  font-weight: 700;
+}
+
+.registrationForm button[type="submit"] ~ p {
+  margin: 2em 0 0;
+  text-align: center;
+}
+
+.registrationForm button[type="submit"] ~ p a {
+  color: inherit;
+  font-weight: 700;
+}
+
+.registrationForm button[type="submit"] ~ p a:hover {
+  color: var(--color-primary-blue);
+  transition: color 0.2s ease;
+}
+
+.invalid {
+  color: var(--color-red);
+  margin: 5px 0 0;
+  font-weight: 400;
+}

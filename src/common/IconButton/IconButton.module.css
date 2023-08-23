@@ -1,0 +1,14 @@
+.iconButton {
+  border: none;
+  background: none;
+  padding: 0.5em;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.iconButton svg {
+  width: 1em;
+  height: 1em;
+}

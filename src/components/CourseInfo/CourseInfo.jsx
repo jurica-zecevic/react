@@ -1,70 +1,93 @@
+import { useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+
+import PropTypes from 'prop-types';
+
 import styles from './CourseInfo.module.css';
 
-import Button from '../../common/Button/Button';
+import Link from '../../common/Link/Link';
 
 import { formatCourseDuration } from '../../helpers/formatCourseDuration';
 import { formatCreationDate } from '../../helpers/formatCreationDate';
 import { getAuthorNames } from '../../helpers/getAuthorNames';
 
-const course = ({
-	id,
-	title,
-	description,
-	duration,
-	authors,
-	creationDate,
-	authorsList,
-	onBackToCourses,
-}) => {
-	const handleBackToCoursesClick = () => {
-		onBackToCourses();
-	};
+const CourseInfo = ({ coursesList, authorsList }) => {
+	let { courseId } = useParams();
+	const [course, setCourse] = useState(null);
+
+	useEffect(() => {
+		const clickedCourse = coursesList.find((course) => course.id === courseId);
+		setCourse(clickedCourse);
+	}, [courseId, coursesList]);
+
+	if (!course) {
+		return <div>No courses found...</div>;
+	}
 
 	return (
 		<div className={styles.course}>
-			<h1>{title}</h1>
+			<h1>{course.title}</h1>
 			<div className={styles.courseCard}>
 				<div className={styles.courseHeader}>
 					<h2>Description:</h2>
-					<p>{description}</p>
+					<p>{course.description}</p>
 				</div>
 				<div className={styles.courseDetails}>
 					<div className={styles.courseList}>
 						<p className={styles.listItem}>
 							<span className={styles.itemHeader}>ID: </span>
-							<span className={styles.itemDescription}>{id}</span>
+							<span className={styles.itemDescription}>{course.id}</span>
 						</p>
 						<p className={styles.listItem}>
 							<span className={styles.itemHeader}>Duration: </span>
 							<span className={styles.itemDescription}>
-								<span>{formatCourseDuration(duration).durationTime} </span>
-								<span>{formatCourseDuration(duration).durationLabel}</span>
+								<span>
+									{formatCourseDuration(course.duration).durationTime}{' '}
+								</span>
+								<span>
+									{formatCourseDuration(course.duration).durationLabel}
+								</span>
 							</span>
 						</p>
 						<p className={styles.listItem}>
 							<span className={styles.itemHeader}>Created: </span>
 							<span className={styles.itemDescription}>
-								{formatCreationDate(creationDate)}
+								{formatCreationDate(course.creationDate)}
 							</span>
 						</p>
 						<p className={styles.listItem}>
 							<span className={styles.itemHeader}>Authors: </span>
 							<span className={styles.itemDescription}>
-								{getAuthorNames(authors, authorsList).join(', ')}
+								{getAuthorNames(course.authors, authorsList).join(', ')}
 							</span>
 						</p>
 					</div>
 				</div>
 			</div>
-			<div className={styles.buttonContainer}>
-				<Button
-					type='button'
-					onClick={handleBackToCoursesClick}
-					buttonText='Back'
-				/>
+			<div className={styles.linkContainer}>
+				<Link to='/courses' linkText='Back' />
 			</div>
 		</div>
 	);
 };
 
-export default course;
+CourseInfo.propTypes = {
+	coursesList: PropTypes.arrayOf(
+		PropTypes.shape({
+			id: PropTypes.string,
+			title: PropTypes.string,
+			description: PropTypes.string,
+			creationDate: PropTypes.string,
+			duration: PropTypes.number,
+			authors: PropTypes.arrayOf(PropTypes.string),
+		})
+	),
+	authorsList: PropTypes.arrayOf(
+		PropTypes.shape({
+			id: PropTypes.string,
+			name: PropTypes.string,
+		})
+	),
+};
+
+export default CourseInfo;

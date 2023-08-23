@@ -1,3 +1,7 @@
+import { useNavigate } from 'react-router-dom';
+
+import PropTypes from 'prop-types';
+
 import styles from './CourseCard.module.css';
 
 import Button from '../../../../common/Button/Button';
@@ -14,10 +18,11 @@ const CourseCard = ({
 	duration,
 	creationDate,
 	authorsList,
-	onSelect,
 }) => {
-	const handleDetailsClick = () => {
-		onSelect(id);
+	const navigateCourseDetails = useNavigate();
+
+	const showCourseDetails = () => {
+		navigateCourseDetails(`/courses/${id}`);
 	};
 
 	return (
@@ -46,11 +51,26 @@ const CourseCard = ({
 				<Button
 					buttonText='Show course'
 					type='button'
-					onClick={handleDetailsClick}
+					onClick={showCourseDetails}
 				/>
 			</div>
 		</div>
 	);
+};
+
+CourseCard.propTypes = {
+	id: PropTypes.string,
+	title: PropTypes.string,
+	description: PropTypes.string,
+	authors: PropTypes.arrayOf(PropTypes.string),
+	duration: PropTypes.number,
+	creationDate: PropTypes.string,
+	authorsList: PropTypes.arrayOf(
+		PropTypes.shape({
+			id: PropTypes.string,
+			name: PropTypes.string,
+		})
+	),
 };
 
 export default CourseCard;
