@@ -24,7 +24,6 @@ const CreateCourse = ({ courses, setCourses }) => {
 		isTitleValid: true,
 		isDescriptionValid: true,
 		isDurationValid: true,
-		isAuthorNameValid: true,
 	});
 	const [authors, setAuthors] = useState([]);
 	const [courseAuthors, setCourseAuthors] = useState([]);
@@ -40,18 +39,14 @@ const CreateCourse = ({ courses, setCourses }) => {
 		const isTitleValid = formValues.title !== '';
 		const isDescriptionValid = formValues.description !== '';
 		const isDurationValid = formValues.duration > 0;
-		const isAuthorNameValid = formValues.authorName !== '';
 
 		setFormValid({
 			isTitleValid,
 			isDescriptionValid,
 			isDurationValid,
-			isAuthorNameValid,
 		});
 
-		return (
-			isTitleValid && isDescriptionValid && isDurationValid && isAuthorNameValid
-		);
+		return isTitleValid && isDescriptionValid && isDurationValid;
 	};
 
 	const handleAddAuthor = (author) => {
@@ -173,18 +168,11 @@ const CreateCourse = ({ courses, setCourses }) => {
 								<Input
 									id='new-course-authors'
 									name='authorName'
-									style={{
-										borderColor:
-											!formValid.isAuthorNameValid && 'var(--color-red)',
-									}}
 									type='text'
 									placeholder='Enter authors...'
 									value={formValues.authorName}
 									onChange={handleInputChange}
 								/>
-								{!formValid.isAuthorNameValid && (
-									<p className={styles.invalid}>Author is required.</p>
-								)}
 							</label>
 							<Button
 								type='button'
