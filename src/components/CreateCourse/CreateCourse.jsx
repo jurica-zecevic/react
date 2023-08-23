@@ -184,13 +184,17 @@ const CreateCourse = ({ courses, setCourses }) => {
 					<div>
 						<h2>Course authors</h2>
 						<div className={styles.courseAuthorsList}>
-							{courseAuthors.map((author) => (
-								<AuthorItem
-									key={author.id}
-									author={author}
-									onDelete={() => handleDeleteAuthor(author)}
-								/>
-							))}
+							{courseAuthors.length === 0 ? (
+								<p>Author list is empty</p>
+							) : (
+								courseAuthors.map((author) => (
+									<AuthorItem
+										key={author.id}
+										author={author}
+										onDelete={() => handleDeleteAuthor(author)}
+									/>
+								))
+							)}
 						</div>
 					</div>
 				</div>
