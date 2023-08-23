@@ -72,8 +72,22 @@ const CourseInfo = ({ coursesList, authorsList }) => {
 };
 
 CourseInfo.propTypes = {
-	coursesList: PropTypes.array,
-	authorsList: PropTypes.array,
+	coursesList: PropTypes.arrayOf(
+		PropTypes.shape({
+			id: PropTypes.string,
+			title: PropTypes.string,
+			description: PropTypes.string,
+			creationDate: PropTypes.string,
+			duration: PropTypes.number,
+			authors: PropTypes.arrayOf(PropTypes.string),
+		})
+	),
+	authorsList: PropTypes.arrayOf(
+		PropTypes.shape({
+			id: PropTypes.string,
+			name: PropTypes.string,
+		})
+	),
 };
 
 export default CourseInfo;

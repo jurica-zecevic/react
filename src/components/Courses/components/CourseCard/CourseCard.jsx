@@ -62,10 +62,15 @@ CourseCard.propTypes = {
 	id: PropTypes.string,
 	title: PropTypes.string,
 	description: PropTypes.string,
-	authors: PropTypes.array,
+	authors: PropTypes.arrayOf(PropTypes.string),
 	duration: PropTypes.number,
 	creationDate: PropTypes.string,
-	authorsList: PropTypes.array,
+	authorsList: PropTypes.arrayOf(
+		PropTypes.shape({
+			id: PropTypes.string,
+			name: PropTypes.string,
+		})
+	),
 };
 
 export default CourseCard;

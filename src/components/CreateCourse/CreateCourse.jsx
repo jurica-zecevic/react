@@ -3,9 +3,8 @@ import { useNavigate } from 'react-router-dom';
 
 import PropTypes from 'prop-types';
 
-import { validateNewCourseField } from '../../helpers/newCourseValidation';
-import { formatNewCourseDuration } from '../../helpers/formatNewCourseDuration';
-import { formatNewCourseDate } from '../../helpers/formatNewCourseDate';
+import { formatCourseDuration } from '../../helpers/formatCourseDuration';
+import { formatCourseDate } from '../../helpers/formatCourseDate';
 
 import AuthorItem from './components/AuthorItem';
 import Button from '../../common/Button/Button';
@@ -15,37 +14,44 @@ import Textarea from '../../common/Textarea/Textarea';
 import styles from './CreateCourse.module.css';
 
 const CreateCourse = ({ courses, setCourses }) => {
-	const [titleValue, setTitleValue] = useState('');
-	const [descriptionValue, setDescriptionValue] = useState('');
-	const [durationValue, setDurationValue] = useState('');
-	const [authorNameValue, setAuthorNameValue] = useState('');
+	const [formValues, setFormValues] = useState({
+		title: '',
+		description: '',
+		duration: '',
+		authorName: '',
+	});
+	const [formValid, setFormValid] = useState({
+		isTitleValid: true,
+		isDescriptionValid: true,
+		isDurationValid: true,
+		isAuthorNameValid: true,
+	});
 	const [authors, setAuthors] = useState([]);
 	const [courseAuthors, setCourseAuthors] = useState([]);
-	const [titleValid, isTitleValid] = useState(true);
-	const [descriptionValid, isDescriptionValid] = useState(true);
-	const [durationValid, isDurationValid] = useState(true);
-	const [authorNameValid, isAuthorNameValid] = useState(true);
 
 	const navigateCourses = useNavigate();
 
-	const handleTitleChange = (value) => {
-		setTitleValue(value);
-		isTitleValid(validateNewCourseField(value));
+	const handleInputChange = (event) => {
+		const { name, value } = event.target;
+		setFormValues({ ...formValues, [name]: value });
 	};
 
-	const handleDescriptionChange = (value) => {
-		setDescriptionValue(value);
-		isDescriptionValid(validateNewCourseField(value));
-	};
+	const isFormValid = () => {
+		const isTitleValid = formValues.title !== '';
+		const isDescriptionValid = formValues.description !== '';
+		const isDurationValid = formValues.duration > 0;
+		const isAuthorNameValid = formValues.authorName !== '';
 
-	const handleDurationChange = (value) => {
-		setDurationValue(value);
-		isDurationValid(validateNewCourseField(value));
-	};
+		setFormValid({
+			isTitleValid,
+			isDescriptionValid,
+			isDurationValid,
+			isAuthorNameValid,
+		});
 
-	const handleAuthorNameChange = (value) => {
-		setAuthorNameValue(value);
-		isAuthorNameValid(validateNewCourseField(value));
+		return (
+			isTitleValid && isDescriptionValid && isDurationValid && isAuthorNameValid
+		);
 	};
 
 	const handleAddAuthor = (author) => {
@@ -60,31 +66,31 @@ const CreateCourse = ({ courses, setCourses }) => {
 	const handleCreateAuthor = () => {
 		const newAuthor = {
 			id: Date.now().toString(),
-			name: authorNameValue,
+			name: formValues.authorName,
 		};
 		setAuthors([...authors, newAuthor]);
-		setAuthorNameValue('');
+		setFormValues({ ...formValues, authorName: '' });
+	};
+
+	const buildNewCourse = () => {
+		return {
+			id: Date.now().toString(),
+			title: formValues.title,
+			description: formValues.description,
+			creationDate: formatCourseDate(new Date()),
+			duration: parseInt(formValues.duration),
+			authors: courseAuthors.map((author) => author.id),
+		};
 	};
 
 	const handleCreateCourse = (event) => {
 		event.preventDefault();
 
-		if (titleValue === '' || descriptionValue === '' || durationValue === '') {
-			isTitleValid(titleValue !== '');
-			isDescriptionValid(descriptionValue !== '');
-			isDurationValid(durationValue !== '');
+		if (!isFormValid()) {
 			return;
 		}
 
-		const newCourse = {
-			id: Date.now().toString(),
-			title: titleValue,
-			description: descriptionValue,
-			creationDate: formatNewCourseDate(new Date()),
-			duration: parseInt(durationValue),
-			authors: courseAuthors.map((author) => author.id),
-		};
-
+		const newCourse = buildNewCourse();
 		setCourses([...courses, newCourse]);
 		navigateCourses('/courses');
 	};
@@ -102,26 +108,32 @@ const CreateCourse = ({ courses, setCourses }) => {
 					Title
 					<Input
 						id='new-course-title'
-						style={{ borderColor: !titleValid && 'var(--color-red)' }}
+						name='title'
+						style={{
+							borderColor: !formValid.isTitleValid && 'var(--color-red)',
+						}}
 						type='text'
 						placeholder='Enter title...'
-						value={titleValue}
-						required
-						onChange={({ target }) => handleTitleChange(target.value)}
+						value={formValues.title}
+						onChange={handleInputChange}
 					/>
-					{!titleValid && <p className={styles.invalid}>Title is required.</p>}
+					{!formValid.isTitleValid && (
+						<p className={styles.invalid}>Title is required.</p>
+					)}
 				</label>
 				<label className={styles.formLabel} htmlFor='new-course-desc'>
 					Description
 					<Textarea
 						id='new-course-desc'
-						style={{ borderColor: !descriptionValid && 'var(--color-red)' }}
+						name='description'
+						style={{
+							borderColor: !formValid.isDescriptionValid && 'var(--color-red)',
+						}}
 						placeholder='Enter description...'
-						value={descriptionValue}
-						required
-						onChange={({ target }) => handleDescriptionChange(target.value)}
+						value={formValues.description}
+						onChange={handleInputChange}
 					/>
-					{!descriptionValid && (
+					{!formValid.isDescriptionValid && (
 						<p className={styles.invalid}>Description is required.</p>
 					)}
 				</label>
@@ -131,20 +143,25 @@ const CreateCourse = ({ courses, setCourses }) => {
 						Duration
 						<Input
 							id='new-course-duration'
-							style={{ borderColor: !durationValid && 'var(--color-red)' }}
+							name='duration'
+							style={{
+								borderColor: !formValid.isDurationValid && 'var(--color-red)',
+							}}
 							type='number'
 							min='1'
 							placeholder='Enter duration in minutes...'
-							value={durationValue}
-							required
-							onChange={({ target }) => handleDurationChange(target.value)}
+							value={formValues.duration}
+							onChange={handleInputChange}
 						/>
-						{!durationValid && (
+						{!formValid.isDurationValid && (
 							<p className={styles.invalid}>Duration is required.</p>
 						)}
 					</label>
 					<p className={styles.durationText}>
-						<span>{formatNewCourseDuration(durationValue)}</span> hours
+						<span>
+							{formatCourseDuration(formValues.duration).durationTime}{' '}
+						</span>
+						{formatCourseDuration(formValues.duration).durationLabel}
 					</p>
 				</div>
 				<div className={styles.authors}>
@@ -155,18 +172,17 @@ const CreateCourse = ({ courses, setCourses }) => {
 								Author Name
 								<Input
 									id='new-course-authors'
+									name='authorName'
 									style={{
-										borderColor: !authorNameValid && 'var(--color-red)',
+										borderColor:
+											!formValid.isAuthorNameValid && 'var(--color-red)',
 									}}
 									type='text'
 									placeholder='Enter authors...'
-									value={authorNameValue}
-									required={!authors.length && !courseAuthors.length}
-									onChange={({ target }) =>
-										handleAuthorNameChange(target.value)
-									}
+									value={formValues.authorName}
+									onChange={handleInputChange}
 								/>
-								{!authorNameValid && (
+								{!formValid.isAuthorNameValid && (
 									<p className={styles.invalid}>Author is required.</p>
 								)}
 							</label>
@@ -219,7 +235,13 @@ const CreateCourse = ({ courses, setCourses }) => {
 };
 
 CreateCourse.propTypes = {
-	courses: PropTypes.array,
+	courses: PropTypes.arrayOf(
+		PropTypes.shape({
+			id: PropTypes.string,
+			title: PropTypes.string,
+			description: PropTypes.string,
+		})
+	),
 	setCourses: PropTypes.func,
 };
 
