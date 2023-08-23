@@ -52,7 +52,7 @@ const App = () => {
 					path='courses/add'
 					element={<CreateCourse courses={courses} setCourses={setCourses} />}
 				/>
-				<Route path='register' element={<Registration />} />
+				<Route path='registration' element={<Registration />} />
 				<Route path='login' element={<Login />} />
 				<Route path='/' element={<Navigate to='/login' />} />
 				{token && <Route path='/' element={<Navigate to='/courses' />} />}
