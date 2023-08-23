@@ -18,13 +18,11 @@ const Registration = () => {
 		password: '',
 	});
 	const [formValid, setFormValid] = useState({
-		nameValid: true,
-		emailValid: true,
-		passwordValid: true,
+		isNameValid: true,
+		isEmailValid: true,
+		isPasswordValid: true,
 	});
-
-	const [hasResponseError, setResponseError] = useState(false);
-	const [responseErrorText, setResponseErrorText] = useState('');
+	const [error, setError] = useState('');
 
 	const handleInputChange = (event) => {
 		const { name, value } = event.target;
@@ -32,13 +30,13 @@ const Registration = () => {
 	};
 
 	const isFormValid = () => {
-		const nameValid = formValues.name !== '';
-		const emailValid = formValues.email !== '';
-		const passwordValid = passwordPattern.test(formValues.password);
+		const isNameValid = formValues.name !== '';
+		const isEmailValid = formValues.email !== '';
+		const isPasswordValid = passwordPattern.test(formValues.password);
 
-		setFormValid({ nameValid, emailValid, passwordValid });
+		setFormValid({ isNameValid, isEmailValid, isPasswordValid });
 
-		return nameValid && emailValid && passwordValid;
+		return isNameValid && isEmailValid && isPasswordValid;
 	};
 
 	const handleSubmit = async (event) => {
@@ -58,8 +56,8 @@ const Registration = () => {
 			});
 
 			if (!response.ok) {
-				setResponseError(true);
-				setResponseErrorText(response.statusText);
+				const text = await response.json();
+				setError(text.errors);
 			} else {
 				navigateLogin('/login');
 			}
@@ -78,14 +76,14 @@ const Registration = () => {
 						id='reg-form-name'
 						name='name'
 						style={{
-							borderColor: !formValid.nameValid && 'var(--color-red)',
+							borderColor: !formValid.isNameValid && 'var(--color-red)',
 						}}
 						type='text'
 						placeholder='Enter name...'
 						value={formValues.name}
 						onChange={handleInputChange}
 					/>
-					{!formValid.nameValid && (
+					{!formValid.isNameValid && (
 						<p className={styles.invalid}>Name is required.</p>
 					)}
 				</label>
@@ -95,14 +93,14 @@ const Registration = () => {
 						id='reg-form-email'
 						name='email'
 						style={{
-							borderColor: !formValid.emailValid && 'var(--color-red)',
+							borderColor: !formValid.isEmailValid && 'var(--color-red)',
 						}}
 						type='text'
 						placeholder='Enter email address...'
 						value={formValues.email}
 						onChange={handleInputChange}
 					/>
-					{!formValid.emailValid && (
+					{!formValid.isEmailValid && (
 						<p className={styles.invalid}>Email is required.</p>
 					)}
 				</label>
@@ -112,14 +110,14 @@ const Registration = () => {
 						id='reg-form-password'
 						name='password'
 						style={{
-							borderColor: !formValid.passwordValid && 'var(--color-red)',
+							borderColor: !formValid.isPasswordValid && 'var(--color-red)',
 						}}
 						type='password'
 						placeholder='Only letters and 6 chars min...'
 						value={formValues.password}
 						onChange={handleInputChange}
 					/>
-					{!formValid.passwordValid && (
+					{!formValid.isPasswordValid && (
 						<p className={styles.invalid}>Password is required.</p>
 					)}
 				</label>
@@ -127,9 +125,11 @@ const Registration = () => {
 				<p>
 					If you have an account you may <Link to='/login'>Login</Link>
 				</p>
-				{hasResponseError && (
+				{error && (
 					<p className={styles.invalid}>
-						Sorry, Registration failed! Reason: {responseErrorText}
+						Sorry, Registration failed! Reason:
+						<br />
+						{error}
 					</p>
 				)}
 			</form>

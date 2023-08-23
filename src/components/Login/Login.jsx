@@ -17,11 +17,10 @@ const Login = () => {
 		password: '',
 	});
 	const [formValid, setFormValid] = useState({
-		emailValid: true,
-		passwordValid: true,
+		isEmailValid: true,
+		isPasswordValid: true,
 	});
-	const [hasResponseError, setResponseError] = useState(false);
-	const [responseErrorText, setResponseErrorText] = useState('');
+	const [error, setError] = useState('');
 
 	const handleInputChange = (event) => {
 		const { name, value } = event.target;
@@ -29,12 +28,12 @@ const Login = () => {
 	};
 
 	const isFormValid = () => {
-		const emailValid = formValues.email !== '';
-		const passwordValid = formValues.password !== '';
+		const isEmailValid = formValues.email !== '';
+		const isPasswordValid = formValues.password !== '';
 
-		setFormValid({ emailValid, passwordValid });
+		setFormValid({ isEmailValid, isPasswordValid });
 
-		return emailValid && passwordValid;
+		return isEmailValid && isPasswordValid;
 	};
 
 	const handleSubmit = async (event) => {
@@ -54,8 +53,8 @@ const Login = () => {
 			});
 
 			if (!response.ok) {
-				setResponseError(true);
-				setResponseErrorText(response.statusText);
+				const text = await response.json();
+				setError(text.result);
 			} else {
 				const data = await response.json();
 				localStorage.setItem('token', data.result);
@@ -76,13 +75,15 @@ const Login = () => {
 					<Input
 						id='reg-form-email'
 						name='email'
-						style={{ borderColor: !formValid.emailValid && 'var(--color-red)' }}
+						style={{
+							borderColor: !formValid.isEmailValid && 'var(--color-red)',
+						}}
 						type='text'
 						placeholder='Enter email address...'
 						value={formValues.email}
 						onChange={handleInputChange}
 					/>
-					{!formValid.emailValid && (
+					{!formValid.isEmailValid && (
 						<p className={styles.invalid}>Email is required.</p>
 					)}
 				</label>
@@ -92,14 +93,14 @@ const Login = () => {
 						id='reg-form-password'
 						name='password'
 						style={{
-							borderColor: !formValid.passwordValid && 'var(--color-red)',
+							borderColor: !formValid.isPasswordValid && 'var(--color-red)',
 						}}
 						type='password'
 						placeholder='Enter password...'
 						value={formValues.password}
 						onChange={handleInputChange}
 					/>
-					{!formValid.passwordValid && (
+					{!formValid.isPasswordValid && (
 						<p className={styles.invalid}>Password is required.</p>
 					)}
 				</label>
@@ -108,9 +109,11 @@ const Login = () => {
 					If you don't have an account you may{' '}
 					<Link to='/register'>Register</Link>
 				</p>
-				{hasResponseError && (
+				{error && (
 					<p className={styles.invalid}>
-						Sorry, Login failed! Reason: {responseErrorText}
+						Sorry, Login failed! Reason:
+						<br />
+						{error}
 					</p>
 				)}
 			</form>
