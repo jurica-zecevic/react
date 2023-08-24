@@ -35,7 +35,7 @@ const CourseCard = ({
 				<div className={styles.cardList}>
 					<p>
 						<span>
-							Authors: {getAuthorNames(authors, authorsList).join(', ')}
+							Authors: {/* {getAuthorNames(authors, authorsList).join(', ')} */}
 						</span>
 					</p>
 					<p>

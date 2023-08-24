@@ -1,20 +1,19 @@
+import axios from 'axios';
+
 import { BASE_URL } from './constants';
 
-export const fetchCourses = async () => {
-	try {
-		const response = await fetch(`${BASE_URL}/courses/all`);
-		const courses = await response.json();
+import { fetchCoursesSucceeded } from './store/courses/actions';
 
-		if (!response.ok) {
-			throw new Error(courses.message || 'Something went wrong');
-		} else {
-			console.log(courses.result);
-			return courses.result;
+export const fetchCourses = () => {
+	return async (dispatch) => {
+		try {
+			const response = await axios.get(`${BASE_URL}/courses/all`);
+			dispatch(fetchCoursesSucceeded(response.data.result));
+		} catch (err) {
+			console.error('Error fetching courses:', err);
+			throw err;
 		}
-	} catch (error) {
-		console.error('Error fetching courses:', error);
-		throw error;
-	}
+	};
 };
 
 export const fetchAuthors = async () => {

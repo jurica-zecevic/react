@@ -1,6 +1,6 @@
 import * as actions from './types.js';
 
-export const coursesInitialState = [];
+const coursesInitialState = [];
 
 export const coursesReducer = (state = coursesInitialState, action) => {
 	switch (action.type) {
@@ -13,8 +13,9 @@ export const coursesReducer = (state = coursesInitialState, action) => {
 		case actions.DELETE_COURSE:
 			return [...state, action.payload];
 
-		case actions.SET_COURSES:
-			return [...state, action.payload];
+		case actions.FETCH_COURSES_SUCCEEDED: {
+			return action.payload;
+		}
 
 		default:
 			return state;
