@@ -1,5 +1,18 @@
-import { SAVE_COURSES, DELETE_COURSE, ADD_COURSE } from './types.js';
+import * as actions from './types.js';
 
-const addCourseAction = (payload) => ({ type: ADD_COURSE, payload });
-const deleteCourseAction = (payload) => ({ type: DELETE_COURSE, payload });
-const saveCoursesAction = (payload) => ({ type: SAVE_COURSES, payload });
+export const addCourseAction = (payload) => ({
+	type: actions.ADD_COURSE,
+	payload,
+});
+export const deleteCourseAction = (payload) => ({
+	type: actions.DELETE_COURSE,
+	payload,
+});
+export const saveCoursesAction = (payload) => ({
+	type: actions.SAVE_COURSES,
+	payload,
+});
+export const setCourses = (payload) => ({
+	type: actions.SET_COURSES,
+	payload,
+});

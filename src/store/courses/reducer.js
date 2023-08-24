@@ -1,16 +1,19 @@
-import { SAVE_COURSES, DELETE_COURSE, ADD_COURSE } from './types.js';
+import * as actions from './types.js';
 
 export const coursesInitialState = [];
 
 export const coursesReducer = (state = coursesInitialState, action) => {
 	switch (action.type) {
-		case SAVE_COURSES:
+		case actions.SAVE_COURSES:
 			return action.payload;
 
-		case ADD_COURSE:
+		case actions.ADD_COURSE:
 			return [...state, action.payload];
 
-		case DELETE_COURSE:
+		case actions.DELETE_COURSE:
+			return [...state, action.payload];
+
+		case actions.SET_COURSES:
 			return [...state, action.payload];
 
 		default:
