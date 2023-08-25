@@ -12,7 +12,7 @@ export const saveCoursesAction = (payload) => ({
 	type: actions.SAVE_COURSES,
 	payload,
 });
-export const fetchCoursesSucceeded = (courses) => ({
-	type: actions.FETCH_COURSES_SUCCEEDED,
+export const fetchCoursesAction = (courses) => ({
+	type: actions.FETCH_COURSES,
 	payload: courses,
 });
