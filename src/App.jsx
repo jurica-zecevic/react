@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { Routes, Route, Outlet, Navigate } from 'react-router-dom';
 
-import { fetchCourses } from './services';
-import { getCourses } from './selectors';
+import { fetchCourses, fetchAuthors } from './services';
+import { getCourses, getAuthors } from './selectors';
 
 import './App.css';
 
@@ -36,18 +36,23 @@ const Layout = () => {
 const App = () => {
 	const dispatch = useDispatch();
 	const courses = useSelector(getCourses);
+	const authors = useSelector(getAuthors);
 
 	useEffect(() => {
 		dispatch(fetchCourses());
+		dispatch(fetchAuthors());
 	}, [dispatch]);
 
 	return (
 		<Routes>
 			<Route path='/' element={<Layout />}>
-				<Route path='courses' element={<Courses coursesList={courses} />} />
+				<Route
+					path='courses'
+					element={<Courses coursesList={courses} authorsList={authors} />}
+				/>
 				<Route
 					path='courses/:courseId'
-					element={<CourseInfo coursesList={courses} />}
+					element={<CourseInfo coursesList={courses} authorsList={authors} />}
 				/>
 				<Route
 					path='courses/add'

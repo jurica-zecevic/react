@@ -6,15 +6,14 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 import rootReducer from './rootReducer';
 
+import { coursesInitialState } from './courses/reducer';
+import { authorsInitialState } from './authors/reducer';
+import { userInitialState } from './user/reducer';
+
 const appInitialState = {
-	user: {
-		isAuth: false,
-		name: '',
-		email: '',
-		token: '',
-	},
-	courses: [],
-	authors: [],
+	user: userInitialState,
+	courses: coursesInitialState,
+	authors: authorsInitialState,
 };
 
 const store = createStore(
