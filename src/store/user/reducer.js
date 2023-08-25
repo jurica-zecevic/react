@@ -1,15 +1,15 @@
 import * as actions from './types.js';
 
-const initialState = {
+export const userInitialState = {
 	isAuth: false,
 	name: '',
 	email: '',
-	token: '',
+	token: localStorage.getItem('token') || '',
 };
 
-export const userReducer = (state = initialState, action) => {
+export const userReducer = (state = userInitialState, action) => {
 	switch (action.type) {
-		case actions.SET_USER_LOGIN:
+		case actions.LOGIN:
 			return {
 				...state,
 				isAuth: true,
@@ -17,7 +17,7 @@ export const userReducer = (state = initialState, action) => {
 				email: action.payload.email,
 				token: action.payload.token,
 			};
-		case actions.SET_USER_LOGOUT:
+		case actions.LOGOUT:
 			return {
 				...state,
 				isAuth: false,

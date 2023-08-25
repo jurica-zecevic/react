@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
+import { useDispatch } from 'react-redux';
+
 import styles from './Header.module.css';
 
 import Logo from './components/Logo/Logo';
@@ -10,6 +12,7 @@ const Header = () => {
 	const [isUserAuthenticated, setIsUserAuthenticated] = useState(false);
 	const navigate = useNavigate();
 	const location = useLocation();
+	const dispatch = useDispatch();
 	const userName = localStorage.getItem('userName');
 
 	useEffect(() => {
@@ -18,8 +21,10 @@ const Header = () => {
 	}, [location]);
 
 	const handleLogout = () => {
-		localStorage.removeItem('token');
-		localStorage.removeItem('userName');
+		dispatch({
+			type: 'LOGOUT',
+		});
+
 		setIsUserAuthenticated(false);
 		navigate('/login');
 	};
