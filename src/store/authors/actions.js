@@ -1,12 +1,10 @@
-import { getAllAuthors } from '../../services';
+import * as actions from './types.js';
 
-import { FETCH_AUTHORS } from './types.js';
-
-export const fetchAuthors = () => async (dispatch) => {
-	try {
-		const authors = await getAllAuthors();
-		dispatch({ type: FETCH_AUTHORS, payload: authors });
-	} catch (error) {
-		console.error(error);
-	}
-};
+export const saveAuthorsAction = (payload) => ({
+	type: actions.SAVE_AUTHORS,
+	payload,
+});
+export const fetchAuthorsAction = (authors) => ({
+	type: actions.FETCH_AUTHORS,
+	payload: authors,
+});

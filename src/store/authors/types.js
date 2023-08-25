@@ -1,1 +1,2 @@
+export const SAVE_AUTHORS = 'SAVE_AUTHORS';
 export const FETCH_AUTHORS = 'FETCH_AUTHORS';
