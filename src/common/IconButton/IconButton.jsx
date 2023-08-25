@@ -1,9 +1,14 @@
 import styles from './IconButton.module.css';
 
-const IconButton = ({ icon, onClick }) => {
+const IconButton = ({ background, icon, onClick }) => {
 	return (
 		<>
-			<button className={styles.iconButton} onClick={onClick}>
+			<button
+				className={`${styles.iconButton} ${
+					background ? styles.iconButtonBackground : ''
+				}`}
+				onClick={onClick}
+			>
 				{icon}
 			</button>
 		</>

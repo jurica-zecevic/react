@@ -28,8 +28,13 @@
   margin: 0;
 }
 
-.card button {
+.cardButtonsContainer {
+  display: flex;
   margin-top: 2em;
+}
+
+.cardButtonsContainer button:not(:last-child) {
+  margin-right: 0.75em;
 }
 
 @media (min-width: 60em) {

@@ -5,6 +5,12 @@ import PropTypes from 'prop-types';
 import styles from './CourseCard.module.css';
 
 import Button from '../../../../common/Button/Button';
+import IconButton from '../../../../common/IconButton/IconButton';
+
+import {
+	deleteCourseIcon,
+	editCourseIcon,
+} from '../../../../common/style/icons';
 
 import { getAuthorNames } from '../../../../helpers/getAuthorNames';
 import { formatCourseDuration } from '../../../../helpers/formatCourseDuration';
@@ -48,11 +54,15 @@ const CourseCard = ({
 						<span>Created: {formatCreationDate(creationDate)}</span>
 					</p>
 				</div>
-				<Button
-					buttonText='Show course'
-					type='button'
-					onClick={showCourseDetails}
-				/>
+				<div className={styles.cardButtonsContainer}>
+					<Button
+						buttonText='Show course'
+						type='button'
+						onClick={showCourseDetails}
+					/>
+					<IconButton background icon={deleteCourseIcon} />
+					<IconButton background icon={editCourseIcon} />
+				</div>
 			</div>
 		</div>
 	);
