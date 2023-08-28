@@ -1,8 +1,11 @@
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 import PropTypes from 'prop-types';
 
 import styles from './CourseCard.module.css';
+
+import { deleteCourseAction } from '../../../../store/courses/actions';
 
 import Button from '../../../../common/Button/Button';
 import IconButton from '../../../../common/IconButton/IconButton';
@@ -26,9 +29,14 @@ const CourseCard = ({
 	authorsList,
 }) => {
 	const navigateCourseDetails = useNavigate();
+	const dispatch = useDispatch();
 
 	const showCourseDetails = () => {
 		navigateCourseDetails(`/courses/${id}`);
+	};
+
+	const handleDeleteCourse = () => {
+		dispatch(deleteCourseAction(id));
 	};
 
 	return (
@@ -60,8 +68,12 @@ const CourseCard = ({
 						type='button'
 						onClick={showCourseDetails}
 					/>
-					<IconButton background icon={deleteCourseIcon} />
-					<IconButton background icon={editCourseIcon} />
+					<IconButton
+						hasBackground
+						icon={deleteCourseIcon}
+						onClick={handleDeleteCourse}
+					/>
+					<IconButton hasBackground icon={editCourseIcon} />
 				</div>
 			</div>
 		</div>

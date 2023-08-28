@@ -1,11 +1,11 @@
 import styles from './IconButton.module.css';
 
-const IconButton = ({ background, icon, onClick }) => {
+const IconButton = ({ hasBackground, icon, onClick }) => {
 	return (
 		<>
 			<button
 				className={`${styles.iconButton} ${
-					background ? styles.iconButtonBackground : ''
+					hasBackground ? styles.iconButtonHasBackground : ''
 				}`}
 				onClick={onClick}
 			>

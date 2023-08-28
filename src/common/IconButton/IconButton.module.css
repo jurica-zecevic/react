@@ -8,7 +8,7 @@
   cursor: pointer;
 }
 
-.iconButtonBackground {
+.iconButtonHasBackground {
   background-color: var(--color-primary-blue);
   padding: 0.5em 1em;
   border-radius: 0.3125em;
@@ -17,6 +17,6 @@
   transition: background-color 0.2s ease;
 }
 
-.iconButtonBackground:hover {
+.iconButtonHasBackground:hover {
   background-color: var(--color-primary-blue-hover);
 }
