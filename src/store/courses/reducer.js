@@ -9,7 +9,8 @@ export const coursesReducer = (state = coursesInitialState, action) => {
 		case actions.ADD_COURSE:
 			return [...state, action.payload];
 		case actions.DELETE_COURSE:
-			return [...state, action.payload];
+			return state.filter((course) => course.id !== action.payload);
+
 		case actions.FETCH_COURSES: {
 			return action.payload;
 		}

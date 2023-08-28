@@ -5,7 +5,7 @@ export const authorsInitialState = [];
 export const authorsReducer = (state = authorsInitialState, action) => {
 	switch (action.type) {
 		case actions.SAVE_AUTHORS:
-			return action.payload;
+			return [...state, action.payload];
 		case actions.FETCH_AUTHORS: {
 			return action.payload;
 		}
