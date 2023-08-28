@@ -63,10 +63,11 @@ const CreateCourse = () => {
 
 	const handleCreateAuthor = () => {
 		const newAuthor = {
-			id: Date.now().toString(),
 			name: formValues.authorName,
+			id: Date.now().toString(),
 		};
 		dispatch(saveAuthorsAction(newAuthor));
+		setAuthors([...authors, newAuthor]);
 		setFormValues({ ...formValues, authorName: '' });
 	};
 
