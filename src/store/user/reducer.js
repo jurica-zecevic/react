@@ -10,6 +10,7 @@ export const userInitialState = {
 export const userReducer = (state = userInitialState, action) => {
 	switch (action.type) {
 		case actions.LOGIN:
+			localStorage.setItem('token', action.payload.token);
 			return {
 				...state,
 				isAuth: true,
@@ -18,6 +19,7 @@ export const userReducer = (state = userInitialState, action) => {
 				token: action.payload.token,
 			};
 		case actions.LOGOUT:
+			localStorage.clear();
 			return {
 				...state,
 				isAuth: false,
