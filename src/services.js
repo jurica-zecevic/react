@@ -6,7 +6,12 @@ import { fetchAuthorsAction } from './store/authors/actions';
 export const fetchCourses = () => {
 	return async (dispatch) => {
 		try {
-			const response = await fetch(`${BASE_URL}/courses/all`);
+			const response = await fetch(`${BASE_URL}/courses/all`, {
+				method: 'GET',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+			});
 			const courses = await response.json();
 
 			if (response.ok) {
@@ -24,7 +29,12 @@ export const fetchCourses = () => {
 export const fetchAuthors = () => {
 	return async (dispatch) => {
 		try {
-			const response = await fetch(`${BASE_URL}/authors/all`);
+			const response = await fetch(`${BASE_URL}/authors/all`, {
+				method: 'GET',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+			});
 			const authors = await response.json();
 
 			if (response.ok) {
