@@ -4,7 +4,7 @@ export const userInitialState = {
 	isAuth: false,
 	name: '',
 	email: '',
-	token: localStorage.getItem('token') || '',
+	token: '',
 };
 
 export const userReducer = (state = userInitialState, action) => {
