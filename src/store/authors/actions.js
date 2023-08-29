@@ -1,7 +1,7 @@
 import * as actions from './types.js';
 
 export const saveAuthor = (payload) => ({
-	type: actions.SAVE_AUTHORS,
+	type: actions.SAVE_AUTHOR,
 	payload,
 });
 export const fetchAuthorsAction = (authors) => ({
