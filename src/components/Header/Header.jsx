@@ -3,6 +3,8 @@ import { useNavigate, useLocation } from 'react-router-dom';
 
 import { useDispatch } from 'react-redux';
 
+import { logoutUser } from '../../store/user/actions';
+
 import styles from './Header.module.css';
 
 import Logo from './components/Logo/Logo';
@@ -21,10 +23,7 @@ const Header = () => {
 	}, [location]);
 
 	const handleLogout = () => {
-		dispatch({
-			type: 'LOGOUT',
-		});
-
+		dispatch(logoutUser());
 		setIsUserAuthenticated(false);
 		navigate('/login');
 	};

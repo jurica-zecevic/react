@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import { addCourse } from '../../store/courses/actions';
-import { saveAuthors } from '../../store/authors/actions';
+import { saveAuthor } from '../../store/authors/actions';
 
 import { formatCourseDuration } from '../../helpers/formatCourseDuration';
 import { formatCourseDate } from '../../helpers/formatCourseDate';
@@ -66,7 +66,7 @@ const CreateCourse = () => {
 			name: formValues.authorName,
 			id: Date.now().toString(),
 		};
-		dispatch(saveAuthors(newAuthor));
+		dispatch(saveAuthor(newAuthor));
 		setAuthors([...authors, newAuthor]);
 		setFormValues({ ...formValues, authorName: '' });
 	};
