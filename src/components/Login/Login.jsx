@@ -3,6 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import { useDispatch } from 'react-redux';
 
+import { loginUser } from '../../store/user/actions';
+
 import { BASE_URL } from '../../constants';
 
 import Button from '../../common/Button/Button';
@@ -62,14 +64,13 @@ const Login = () => {
 				const data = await response.json();
 				localStorage.setItem('userName', data.user.name);
 
-				dispatch({
-					type: 'LOGIN',
-					payload: {
+				dispatch(
+					loginUser({
 						name: data.user.name,
 						email: data.user.email,
 						token: data.result,
-					},
-				});
+					})
+				);
 
 				navigateCourses('/courses');
 			}

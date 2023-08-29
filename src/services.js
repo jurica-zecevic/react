@@ -43,7 +43,7 @@ export const fetchAuthors = () => {
 				throw new Error(authors.message || 'Something went wrong');
 			}
 		} catch (err) {
-			console.error('Error fetching courses:', err);
+			console.error('Error fetching authors:', err);
 			throw err;
 		}
 	};
