@@ -1,14 +1,14 @@
 import * as actions from './types.js';
 
-export const addCourseAction = (payload) => ({
+export const addCourse = (payload) => ({
 	type: actions.ADD_COURSE,
 	payload,
 });
-export const deleteCourseAction = (id) => ({
+export const deleteCourse = (id) => ({
 	type: actions.DELETE_COURSE,
 	payload: id,
 });
-export const saveCoursesAction = (payload) => ({
+export const updateCourse = (payload) => ({
 	type: actions.SAVE_COURSES,
 	payload,
 });

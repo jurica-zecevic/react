@@ -1,6 +1,6 @@
 import * as actions from './types.js';
 
-export const saveAuthorsAction = (payload) => ({
+export const saveAuthors = (payload) => ({
 	type: actions.SAVE_AUTHORS,
 	payload,
 });

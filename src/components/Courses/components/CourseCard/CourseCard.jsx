@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 import styles from './CourseCard.module.css';
 
-import { deleteCourseAction } from '../../../../store/courses/actions';
+import { deleteCourse } from '../../../../store/courses/actions';
 
 import Button from '../../../../common/Button/Button';
 import IconButton from '../../../../common/IconButton/IconButton';
@@ -36,7 +36,7 @@ const CourseCard = ({
 	};
 
 	const handleDeleteCourse = () => {
-		dispatch(deleteCourseAction(id));
+		dispatch(deleteCourse(id));
 	};
 
 	return (

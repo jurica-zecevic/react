@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
-import { addCourseAction } from '../../store/courses/actions';
-import { saveAuthorsAction } from '../../store/authors/actions';
+import { addCourse } from '../../store/courses/actions';
+import { saveAuthors } from '../../store/authors/actions';
 
 import { formatCourseDuration } from '../../helpers/formatCourseDuration';
 import { formatCourseDate } from '../../helpers/formatCourseDate';
@@ -66,7 +66,7 @@ const CreateCourse = () => {
 			name: formValues.authorName,
 			id: Date.now().toString(),
 		};
-		dispatch(saveAuthorsAction(newAuthor));
+		dispatch(saveAuthors(newAuthor));
 		setAuthors([...authors, newAuthor]);
 		setFormValues({ ...formValues, authorName: '' });
 	};
@@ -90,7 +90,7 @@ const CreateCourse = () => {
 		}
 
 		const newCourse = buildNewCourse();
-		dispatch(addCourseAction(newCourse));
+		dispatch(addCourse(newCourse));
 		navigateCourses('/courses');
 	};
 
