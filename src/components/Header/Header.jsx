@@ -1,6 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
+import { useDispatch, useSelector } from 'react-redux';
+
+import { getUser } from '../../selectors';
+
+import { logoutUser } from '../../store/user/actions';
+
 import styles from './Header.module.css';
 
 import Logo from './components/Logo/Logo';
@@ -10,7 +16,8 @@ const Header = () => {
 	const [isUserAuthenticated, setIsUserAuthenticated] = useState(false);
 	const navigate = useNavigate();
 	const location = useLocation();
-	const userName = localStorage.getItem('userName');
+	const dispatch = useDispatch();
+	const user = useSelector(getUser);
 
 	useEffect(() => {
 		const token = localStorage.getItem('token');
@@ -18,8 +25,7 @@ const Header = () => {
 	}, [location]);
 
 	const handleLogout = () => {
-		localStorage.removeItem('token');
-		localStorage.removeItem('userName');
+		dispatch(logoutUser());
 		setIsUserAuthenticated(false);
 		navigate('/login');
 	};
@@ -36,7 +42,9 @@ const Header = () => {
 	return (
 		<header className={styles.header}>
 			<Logo />
-			{isUserAuthenticated && shouldShowAuthElements && <span>{userName}</span>}
+			{isUserAuthenticated && shouldShowAuthElements && (
+				<span>{user.name}</span>
+			)}
 			{shouldShowAuthElements && (
 				<>
 					{isUserAuthenticated ? (

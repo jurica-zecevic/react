@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
-import PropTypes from 'prop-types';
+import { addCourse } from '../../store/courses/actions';
+import { saveAuthor } from '../../store/authors/actions';
 
 import { formatCourseDuration } from '../../helpers/formatCourseDuration';
 import { formatCourseDate } from '../../helpers/formatCourseDate';
@@ -13,7 +15,7 @@ import Textarea from '../../common/Textarea/Textarea';
 
 import styles from './CreateCourse.module.css';
 
-const CreateCourse = ({ courses, setCourses }) => {
+const CreateCourse = () => {
 	const [formValues, setFormValues] = useState({
 		title: '',
 		description: '',
@@ -28,6 +30,7 @@ const CreateCourse = ({ courses, setCourses }) => {
 	const [authors, setAuthors] = useState([]);
 	const [courseAuthors, setCourseAuthors] = useState([]);
 
+	const dispatch = useDispatch();
 	const navigateCourses = useNavigate();
 
 	const handleInputChange = (event) => {
@@ -60,9 +63,10 @@ const CreateCourse = ({ courses, setCourses }) => {
 
 	const handleCreateAuthor = () => {
 		const newAuthor = {
-			id: Date.now().toString(),
 			name: formValues.authorName,
+			id: Date.now().toString(),
 		};
+		dispatch(saveAuthor(newAuthor));
 		setAuthors([...authors, newAuthor]);
 		setFormValues({ ...formValues, authorName: '' });
 	};
@@ -86,7 +90,7 @@ const CreateCourse = ({ courses, setCourses }) => {
 		}
 
 		const newCourse = buildNewCourse();
-		setCourses([...courses, newCourse]);
+		dispatch(addCourse(newCourse));
 		navigateCourses('/courses');
 	};
 
@@ -224,17 +228,6 @@ const CreateCourse = ({ courses, setCourses }) => {
 			</div>
 		</div>
 	);
-};
-
-CreateCourse.propTypes = {
-	courses: PropTypes.arrayOf(
-		PropTypes.shape({
-			id: PropTypes.string,
-			title: PropTypes.string,
-			description: PropTypes.string,
-		})
-	),
-	setCourses: PropTypes.func,
 };
 
 export default CreateCourse;

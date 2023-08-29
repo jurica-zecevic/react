@@ -1,9 +1,12 @@
-import { useState } from 'react';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
 import { Routes, Route, Outlet, Navigate } from 'react-router-dom';
 
-import './App.css';
+import { fetchCourses, fetchAuthors } from './services';
+import { getCourses, getAuthors } from './selectors';
 
-import { mockedCoursesList, mockedAuthorsList } from './constants';
+import './App.css';
 
 import Header from './components/Header/Header';
 import Container from './common/Container/Container';
@@ -31,26 +34,29 @@ const Layout = () => {
 };
 
 const App = () => {
-	const [courses, setCourses] = useState(mockedCoursesList);
+	const dispatch = useDispatch();
+	const courses = useSelector(getCourses);
+	const authors = useSelector(getAuthors);
+
+	useEffect(() => {
+		dispatch(fetchCourses());
+		dispatch(fetchAuthors());
+	}, [dispatch]);
 
 	return (
 		<Routes>
 			<Route path='/' element={<Layout />}>
 				<Route
 					path='courses'
-					element={
-						<Courses coursesList={courses} authorsList={mockedAuthorsList} />
-					}
+					element={<Courses coursesList={courses} authorsList={authors} />}
 				/>
 				<Route
 					path='courses/:courseId'
-					element={
-						<CourseInfo coursesList={courses} authorsList={mockedAuthorsList} />
-					}
+					element={<CourseInfo coursesList={courses} authorsList={authors} />}
 				/>
 				<Route
 					path='courses/add'
-					element={<CreateCourse courses={courses} setCourses={setCourses} />}
+					element={<CreateCourse courses={courses} />}
 				/>
 				<Route path='registration' element={<Registration />} />
 				<Route path='login' element={<Login />} />

@@ -1,6 +1,10 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
+import { useDispatch } from 'react-redux';
+
+import { loginUser } from '../../store/user/actions';
+
 import { BASE_URL } from '../../constants';
 
 import Button from '../../common/Button/Button';
@@ -11,6 +15,7 @@ import styles from './Login.module.css';
 const Login = () => {
 	const url = `${BASE_URL}/login`;
 	const navigateCourses = useNavigate();
+	const dispatch = useDispatch();
 
 	const [formValues, setFormValues] = useState({
 		email: '',
@@ -57,8 +62,15 @@ const Login = () => {
 				setError(text.result);
 			} else {
 				const data = await response.json();
-				localStorage.setItem('token', data.result);
-				localStorage.setItem('userName', data.user.name);
+
+				dispatch(
+					loginUser({
+						name: data.user.name,
+						email: data.user.email,
+						token: data.result,
+					})
+				);
+
 				navigateCourses('/courses');
 			}
 		} catch (error) {
