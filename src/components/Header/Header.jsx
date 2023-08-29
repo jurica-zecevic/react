@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { getUser } from '../../selectors';
 
 import { logoutUser } from '../../store/user/actions';
 
@@ -15,7 +17,7 @@ const Header = () => {
 	const navigate = useNavigate();
 	const location = useLocation();
 	const dispatch = useDispatch();
-	const userName = localStorage.getItem('userName');
+	const user = useSelector(getUser);
 
 	useEffect(() => {
 		const token = localStorage.getItem('token');
@@ -40,7 +42,9 @@ const Header = () => {
 	return (
 		<header className={styles.header}>
 			<Logo />
-			{isUserAuthenticated && shouldShowAuthElements && <span>{userName}</span>}
+			{isUserAuthenticated && shouldShowAuthElements && (
+				<span>{user.name}</span>
+			)}
 			{shouldShowAuthElements && (
 				<>
 					{isUserAuthenticated ? (

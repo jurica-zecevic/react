@@ -62,7 +62,6 @@ const Login = () => {
 				setError(text.result);
 			} else {
 				const data = await response.json();
-				localStorage.setItem('userName', data.user.name);
 
 				dispatch(
 					loginUser({
