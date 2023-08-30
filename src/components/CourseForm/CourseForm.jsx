@@ -13,9 +13,9 @@ import Button from '../../common/Button/Button';
 import Input from '../../common/Input/Input';
 import Textarea from '../../common/Textarea/Textarea';
 
-import styles from './CreateCourse.module.css';
+import styles from './CourseForm.module.css';
 
-const CreateCourse = () => {
+const CourseForm = () => {
 	const [formValues, setFormValues] = useState({
 		title: '',
 		description: '',
@@ -82,7 +82,7 @@ const CreateCourse = () => {
 		};
 	};
 
-	const handleCreateCourse = (event) => {
+	const handleCourseForm = (event) => {
 		event.preventDefault();
 
 		if (!isFormValid()) {
@@ -223,11 +223,11 @@ const CreateCourse = () => {
 				<Button
 					type='submit'
 					buttonText='Create course'
-					onClick={handleCreateCourse}
+					onClick={handleCourseForm}
 				/>
 			</div>
 		</div>
 	);
 };
 
-export default CreateCourse;
+export default CourseForm;

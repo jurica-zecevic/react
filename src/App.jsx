@@ -12,7 +12,7 @@ import Header from './components/Header/Header';
 import Container from './common/Container/Container';
 import Courses from './components/Courses/Courses';
 import CourseInfo from './components/CourseInfo/CourseInfo';
-import CreateCourse from './components/CreateCourse/CreateCourse';
+import CourseForm from './components/CourseForm/CourseForm';
 import Registration from './components/Registration/Registration';
 import Login from './components/Login/Login';
 import Footer from './components/Footer/Footer';
@@ -56,7 +56,7 @@ const App = () => {
 				/>
 				<Route
 					path='courses/add'
-					element={<CreateCourse courses={courses} />}
+					element={<CourseForm courses={courses} />}
 				/>
 				<Route path='registration' element={<Registration />} />
 				<Route path='login' element={<Login />} />
