@@ -16,6 +16,7 @@ import CourseForm from './components/CourseForm/CourseForm';
 import Registration from './components/Registration/Registration';
 import Login from './components/Login/Login';
 import Footer from './components/Footer/Footer';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 
 const token = localStorage.getItem('token');
 
@@ -54,7 +55,14 @@ const App = () => {
 					path='courses/:courseId'
 					element={<CourseInfo coursesList={courses} authorsList={authors} />}
 				/>
-				<Route path='courses/add' element={<CourseForm courses={courses} />} />
+				<Route
+					path='courses/add'
+					element={
+						<PrivateRoute>
+							<CourseForm courses={courses} />
+						</PrivateRoute>
+					}
+				/>
 				<Route path='registration' element={<Registration />} />
 				<Route path='login' element={<Login />} />
 				<Route path='/' element={<Navigate to='/login' />} />

@@ -1,5 +1,12 @@
+import { useState, useEffect } from 'react';
+
+import { useSelector, useDispatch } from 'react-redux';
+
+import { fetchUser } from '../../store/user/thunk';
+
+import { getUserRole } from '../../selectors';
+
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
 
 import PropTypes from 'prop-types';
 
@@ -13,9 +20,14 @@ import styles from './Courses.module.css';
 const Courses = ({ coursesList, authorsList }) => {
 	const [filteredCourses, setDisplayedCourses] = useState(coursesList);
 
+	const role = useSelector(getUserRole);
+	const dispatch = useDispatch();
+
 	const navigateAddCourse = useNavigate();
 
-	const userRole = 'admin';
+	useEffect(() => {
+		dispatch(fetchUser());
+	}, [dispatch]);
 
 	const handleAddNewCourse = () => {
 		navigateAddCourse('/courses/add');
@@ -45,13 +57,15 @@ const Courses = ({ coursesList, authorsList }) => {
 				<section>
 					<div className={styles.coursesHeader}>
 						<SearchBar onSearch={handleSearch} />
-						<div className={styles.buttonContainer}>
-							<Button
-								type='button'
-								buttonText='Add new course'
-								onClick={handleAddNewCourse}
-							/>
-						</div>
+						{role === 'admin' && (
+							<div className={styles.buttonContainer}>
+								<Button
+									type='button'
+									buttonText='Add new course'
+									onClick={handleAddNewCourse}
+								/>
+							</div>
+						)}
 					</div>
 					<ul className={styles.coursesList}>
 						{filteredCourses.map((course) => (
@@ -62,7 +76,7 @@ const Courses = ({ coursesList, authorsList }) => {
 					</ul>
 				</section>
 			) : (
-				<EmptyCourseList userRole={userRole} />
+				<EmptyCourseList role={role} />
 			)}
 		</>
 	);
