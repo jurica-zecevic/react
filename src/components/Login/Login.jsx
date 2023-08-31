@@ -119,7 +119,7 @@ const Login = () => {
 				<Button type='submit' buttonText='Login' />
 				<p>
 					If you don't have an account you may{' '}
-					<Link to='/register'>Register</Link>
+					<Link to='/registration'>Register</Link>
 				</p>
 				{error && (
 					<p className={styles.invalid}>
