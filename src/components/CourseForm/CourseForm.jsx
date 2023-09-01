@@ -2,11 +2,10 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
-import { addCourse } from '../../store/courses/actions';
-import { saveAuthor } from '../../store/authors/actions';
+import { addCourse } from '../../store/courses/thunk';
+import { saveAuthor } from '../../store/authors/thunk';
 
 import { formatCourseDuration } from '../../helpers/formatCourseDuration';
-import { formatCourseDate } from '../../helpers/formatCourseDate';
 
 import AuthorItem from './components/AuthorItem';
 import Button from '../../common/Button/Button';
@@ -64,19 +63,17 @@ const CourseForm = () => {
 	const handleCreateAuthor = () => {
 		const newAuthor = {
 			name: formValues.authorName,
-			id: Date.now().toString(),
 		};
-		dispatch(saveAuthor(newAuthor));
-		setAuthors([...authors, newAuthor]);
-		setFormValues({ ...formValues, authorName: '' });
+		dispatch(saveAuthor(newAuthor)).then((createdAuthor) => {
+			setAuthors([...authors, createdAuthor]);
+			setFormValues({ ...formValues, authorName: '' });
+		});
 	};
 
 	const buildNewCourse = () => {
 		return {
-			id: Date.now().toString(),
 			title: formValues.title,
 			description: formValues.description,
-			creationDate: formatCourseDate(new Date()),
 			duration: parseInt(formValues.duration),
 			authors: courseAuthors.map((author) => author.id),
 		};

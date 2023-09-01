@@ -1,8 +1,8 @@
 import { BASE_URL } from '../../constants';
 
-import { setUser, logoutUser } from './actions';
+import { setUserAction, logoutUserAction } from './actions';
 
-export const fetchUser = () => {
+export const setUser = () => {
 	return async (dispatch) => {
 		try {
 			const token = localStorage.getItem('token');
@@ -13,7 +13,7 @@ export const fetchUser = () => {
 				const user = await response.json();
 
 				if (response.ok) {
-					dispatch(setUser(user.result));
+					dispatch(setUserAction(user.result));
 				}
 			}
 		} catch (err) {
@@ -23,7 +23,7 @@ export const fetchUser = () => {
 	};
 };
 
-export const logout = () => {
+export const logoutUser = () => {
 	return async (dispatch) => {
 		try {
 			const token = localStorage.getItem('token');
@@ -35,8 +35,7 @@ export const logout = () => {
 			});
 
 			if (response.ok) {
-				console.log(response.result);
-				dispatch(logoutUser());
+				dispatch(logoutUserAction());
 			}
 		} catch (error) {
 			console.error('An error occurred:', error);

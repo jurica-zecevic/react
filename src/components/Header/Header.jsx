@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { getUser } from '../../selectors';
 
-import { logout } from '../../store/user/thunk';
+import { logoutUser } from '../../store/user/thunk';
 
 import styles from './Header.module.css';
 
@@ -25,7 +25,7 @@ const Header = () => {
 	}, [location]);
 
 	const handleLogout = () => {
-		dispatch(logout());
+		dispatch(logoutUser());
 		setIsUserAuthenticated(false);
 		navigate('/login');
 	};

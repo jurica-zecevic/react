@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
 
-import { fetchUser } from '../../store/user/thunk';
+import { setUser } from '../../store/user/thunk';
 
 import { getUserRole } from '../../selectors';
 
@@ -26,7 +26,7 @@ const Courses = ({ coursesList, authorsList }) => {
 	const navigateAddCourse = useNavigate();
 
 	useEffect(() => {
-		dispatch(fetchUser());
+		dispatch(setUser());
 	}, [dispatch]);
 
 	const handleAddNewCourse = () => {

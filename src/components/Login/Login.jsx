@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import { useDispatch } from 'react-redux';
 
-import { loginUser } from '../../store/user/actions';
+import { loginUserAction } from '../../store/user/actions';
 
 import { BASE_URL } from '../../constants';
 
@@ -64,7 +64,7 @@ const Login = () => {
 				const data = await response.json();
 
 				dispatch(
-					loginUser({
+					loginUserAction({
 						name: data.user.name,
 						email: data.user.email,
 						token: data.result,
