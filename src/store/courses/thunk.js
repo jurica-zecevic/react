@@ -1,6 +1,10 @@
 import { BASE_URL } from '../../constants';
 
-import { addCourseAction, deleteCourseAction } from './actions';
+import {
+	addCourseAction,
+	updateCourseAction,
+	deleteCourseAction,
+} from './actions';
 
 export const addCourse = (course) => {
 	return async (dispatch) => {
@@ -21,6 +25,29 @@ export const addCourse = (course) => {
 			}
 		} catch (err) {
 			console.error('Error while adding course:', err);
+			throw err;
+		}
+	};
+};
+
+export const updateCourse = (id) => {
+	return async (dispatch) => {
+		try {
+			const token = localStorage.getItem('token');
+			const response = await fetch(`${BASE_URL}/courses/${id}`, {
+				method: 'PUT',
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization: token,
+				},
+			});
+			const updatedCourse = await response.json();
+
+			if (response.ok) {
+				dispatch(updateCourseAction(updatedCourse.result));
+			}
+		} catch (err) {
+			console.error('Error while updating course:', err);
 			throw err;
 		}
 	};

@@ -56,10 +56,18 @@ const App = () => {
 					element={<CourseInfo coursesList={courses} authorsList={authors} />}
 				/>
 				<Route
+					path='courses/:action/:courseId?'
+					element={
+						<PrivateRoute>
+							<CourseForm coursesList={courses} authorsList={authors} />
+						</PrivateRoute>
+					}
+				/>
+				<Route
 					path='courses/add'
 					element={
 						<PrivateRoute>
-							<CourseForm courses={courses} />
+							<CourseForm coursesList={courses} />
 						</PrivateRoute>
 					}
 				/>

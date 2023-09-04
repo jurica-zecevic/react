@@ -1,8 +1,10 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
-import { addCourse } from '../../store/courses/thunk';
+import PropTypes from 'prop-types';
+
+import { addCourse, updateCourse } from '../../store/courses/thunk';
 import { saveAuthor } from '../../store/authors/thunk';
 
 import { formatCourseDuration } from '../../helpers/formatCourseDuration';
@@ -14,7 +16,7 @@ import Textarea from '../../common/Textarea/Textarea';
 
 import styles from './CourseForm.module.css';
 
-const CourseForm = () => {
+const CourseForm = ({ coursesList, authorsList }) => {
 	const [formValues, setFormValues] = useState({
 		title: '',
 		description: '',
@@ -29,8 +31,31 @@ const CourseForm = () => {
 	const [authors, setAuthors] = useState([]);
 	const [courseAuthors, setCourseAuthors] = useState([]);
 
+	const { action, courseId } = useParams();
+	const isUpdate = action === 'update';
+
 	const dispatch = useDispatch();
 	const navigateCourses = useNavigate();
+
+	useEffect(() => {
+		if (isUpdate) {
+			const courseToUpdate = coursesList.find(
+				(course) => course.id === courseId
+			);
+			if (courseToUpdate) {
+				setFormValues({
+					title: courseToUpdate.title,
+					description: courseToUpdate.description,
+					duration: courseToUpdate.duration.toString(),
+				});
+				setCourseAuthors(
+					courseToUpdate.authors.map((authorId) =>
+						authorsList.find((author) => author.id === authorId)
+					)
+				);
+			}
+		}
+	}, [isUpdate, courseId, coursesList, authorsList]);
 
 	const handleInputChange = (event) => {
 		const { name, value } = event.target;
@@ -87,7 +112,13 @@ const CourseForm = () => {
 		}
 
 		const newCourse = buildNewCourse();
-		dispatch(addCourse(newCourse));
+
+		if (isUpdate) {
+			dispatch(updateCourse(courseId, newCourse));
+		} else {
+			dispatch(addCourse(newCourse));
+		}
+
 		navigateCourses('/courses');
 	};
 
@@ -110,7 +141,7 @@ const CourseForm = () => {
 						}}
 						type='text'
 						placeholder='Enter title...'
-						value={formValues.title}
+						value={formValues.title || ''}
 						onChange={handleInputChange}
 					/>
 					{!formValid.isTitleValid && (
@@ -126,7 +157,7 @@ const CourseForm = () => {
 							borderColor: !formValid.isDescriptionValid && 'var(--color-red)',
 						}}
 						placeholder='Enter description...'
-						value={formValues.description}
+						value={formValues.description || ''}
 						onChange={handleInputChange}
 					/>
 					{!formValid.isDescriptionValid && (
@@ -146,7 +177,7 @@ const CourseForm = () => {
 							type='number'
 							min='1'
 							placeholder='Enter duration in minutes...'
-							value={formValues.duration}
+							value={formValues.duration || ''}
 							onChange={handleInputChange}
 						/>
 						{!formValid.isDurationValid && (
@@ -171,7 +202,7 @@ const CourseForm = () => {
 									name='authorName'
 									type='text'
 									placeholder='Enter authors...'
-									value={formValues.authorName}
+									value={formValues.authorName || ''}
 									onChange={handleInputChange}
 								/>
 							</label>
@@ -219,12 +250,31 @@ const CourseForm = () => {
 				/>
 				<Button
 					type='submit'
-					buttonText='Create course'
+					buttonText={isUpdate ? 'Update course' : 'Create course'}
 					onClick={handleCourseForm}
 				/>
 			</div>
 		</div>
 	);
+};
+
+CourseForm.propTypes = {
+	coursesList: PropTypes.arrayOf(
+		PropTypes.shape({
+			id: PropTypes.string,
+			title: PropTypes.string,
+			description: PropTypes.string,
+			creationDate: PropTypes.string,
+			duration: PropTypes.number,
+			authors: PropTypes.arrayOf(PropTypes.string),
+		})
+	),
+	authorsList: PropTypes.arrayOf(
+		PropTypes.shape({
+			id: PropTypes.string,
+			name: PropTypes.string,
+		})
+	),
 };
 
 export default CourseForm;

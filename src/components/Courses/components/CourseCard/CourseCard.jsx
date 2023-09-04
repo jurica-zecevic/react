@@ -39,6 +39,10 @@ const CourseCard = ({
 		navigateCourseDetails(`/courses/${id}`);
 	};
 
+	const handleUpdateCourse = () => {
+		navigateCourseDetails(`/courses/update/${id}`);
+	};
+
 	const handleDeleteCourse = () => {
 		dispatch(deleteCourse(id));
 	};
@@ -79,7 +83,11 @@ const CourseCard = ({
 								icon={deleteCourseIcon}
 								onClick={handleDeleteCourse}
 							/>
-							<IconButton hasBackground icon={editCourseIcon} />
+							<IconButton
+								hasBackground
+								icon={editCourseIcon}
+								onClick={handleUpdateCourse}
+							/>
 						</>
 					)}
 				</div>
