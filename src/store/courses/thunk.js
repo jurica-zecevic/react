@@ -30,7 +30,7 @@ export const addCourse = (course) => {
 	};
 };
 
-export const updateCourse = (id) => {
+export const updateCourse = (course, id) => {
 	return async (dispatch) => {
 		try {
 			const token = localStorage.getItem('token');
@@ -40,6 +40,7 @@ export const updateCourse = (id) => {
 					'Content-Type': 'application/json',
 					Authorization: token,
 				},
+				body: JSON.stringify(course),
 			});
 			const updatedCourse = await response.json();
 

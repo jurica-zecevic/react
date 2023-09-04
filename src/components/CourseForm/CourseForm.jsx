@@ -46,7 +46,7 @@ const CourseForm = ({ coursesList, authorsList }) => {
 				setFormValues({
 					title: courseToUpdate.title,
 					description: courseToUpdate.description,
-					duration: courseToUpdate.duration.toString(),
+					duration: courseToUpdate.duration,
 				});
 				setCourseAuthors(
 					courseToUpdate.authors.map((authorId) =>
@@ -114,7 +114,7 @@ const CourseForm = ({ coursesList, authorsList }) => {
 		const newCourse = buildNewCourse();
 
 		if (isUpdate) {
-			dispatch(updateCourse(courseId, newCourse));
+			dispatch(updateCourse(newCourse, courseId));
 		} else {
 			dispatch(addCourse(newCourse));
 		}
