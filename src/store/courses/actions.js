@@ -4,13 +4,13 @@ export const addCourseAction = (courses) => ({
 	type: actions.ADD_COURSE,
 	payload: courses,
 });
+export const updateCourseAction = (courses) => ({
+	type: actions.UPDATE_COURSE,
+	payload: courses,
+});
 export const deleteCourseAction = (id) => ({
 	type: actions.DELETE_COURSE,
 	payload: id,
-});
-export const updateCourseAction = (payload) => ({
-	type: actions.UPDATE_COURSE,
-	payload,
 });
 export const fetchCoursesAction = (courses) => ({
 	type: actions.FETCH_COURSES,

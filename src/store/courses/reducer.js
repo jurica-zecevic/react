@@ -5,7 +5,7 @@ export const coursesInitialState = [];
 export const coursesReducer = (state = coursesInitialState, action) => {
 	switch (action.type) {
 		case actions.UPDATE_COURSE:
-			return action.payload;
+			return [...state, action.payload];
 		case actions.ADD_COURSE:
 			return [...state, action.payload];
 		case actions.DELETE_COURSE:
