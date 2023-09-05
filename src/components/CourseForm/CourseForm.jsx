@@ -104,6 +104,15 @@ const CourseForm = ({ coursesList, authorsList }) => {
 		};
 	};
 
+	const buildUpdatedCourse = () => {
+		return {
+			title: formValues.title,
+			description: formValues.description,
+			duration: parseInt(formValues.duration),
+			authors: courseAuthors.map((author) => author.id),
+		};
+	};
+
 	const handleCourseForm = (event) => {
 		event.preventDefault();
 
@@ -112,9 +121,10 @@ const CourseForm = ({ coursesList, authorsList }) => {
 		}
 
 		const newCourse = buildNewCourse();
+		const updateCourse = buildUpdatedCourse();
 
 		if (isUpdate) {
-			dispatch(updateCourse(newCourse, courseId));
+			dispatch(updateCourse(updateCourse, courseId));
 		} else {
 			dispatch(addCourse(newCourse));
 		}
