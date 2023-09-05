@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
-import PropTypes from 'prop-types';
+import { getCourses, getAuthors } from '../../selectors';
 
 import { addCourse, updateCourse } from '../../store/courses/thunk';
 import { saveAuthor } from '../../store/authors/thunk';
@@ -16,7 +16,10 @@ import Textarea from '../../common/Textarea/Textarea';
 
 import styles from './CourseForm.module.css';
 
-const CourseForm = ({ coursesList, authorsList }) => {
+const CourseForm = () => {
+	const coursesList = useSelector(getCourses);
+	const authorsList = useSelector(getAuthors);
+
 	const [formValues, setFormValues] = useState({
 		title: '',
 		description: '',
@@ -266,25 +269,6 @@ const CourseForm = ({ coursesList, authorsList }) => {
 			</div>
 		</div>
 	);
-};
-
-CourseForm.propTypes = {
-	coursesList: PropTypes.arrayOf(
-		PropTypes.shape({
-			id: PropTypes.string,
-			title: PropTypes.string,
-			description: PropTypes.string,
-			creationDate: PropTypes.string,
-			duration: PropTypes.number,
-			authors: PropTypes.arrayOf(PropTypes.string),
-		})
-	),
-	authorsList: PropTypes.arrayOf(
-		PropTypes.shape({
-			id: PropTypes.string,
-			name: PropTypes.string,
-		})
-	),
 };
 
 export default CourseForm;
