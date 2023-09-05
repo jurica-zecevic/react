@@ -113,7 +113,7 @@ const CourseForm = ({ coursesList, authorsList }) => {
 		};
 	};
 
-	const handleCourseForm = (event) => {
+	const handleFormSubmit = (event) => {
 		event.preventDefault();
 
 		if (!isFormValid()) {
@@ -261,7 +261,7 @@ const CourseForm = ({ coursesList, authorsList }) => {
 				<Button
 					type='submit'
 					buttonText={isUpdate ? 'Update course' : 'Create course'}
-					onClick={handleCourseForm}
+					onClick={handleFormSubmit}
 				/>
 			</div>
 		</div>
