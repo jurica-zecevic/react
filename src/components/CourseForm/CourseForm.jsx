@@ -121,10 +121,10 @@ const CourseForm = ({ coursesList, authorsList }) => {
 		}
 
 		const newCourse = buildNewCourse();
-		const updateCourse = buildUpdatedCourse();
+		const updatedCourse = buildUpdatedCourse();
 
 		if (isUpdate) {
-			dispatch(updateCourse(updateCourse, courseId));
+			dispatch(updateCourse(updatedCourse, courseId));
 		} else {
 			dispatch(addCourse(newCourse));
 		}

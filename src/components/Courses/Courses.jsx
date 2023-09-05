@@ -22,7 +22,7 @@ import styles from './Courses.module.css';
 const Courses = ({ coursesList, authorsList }) => {
 	const [filteredCourses, setDisplayedCourses] = useState(coursesList);
 
-	const role = useSelector(getUserRole);
+	const userRole = useSelector(getUserRole);
 	const dispatch = useDispatch();
 
 	const navigateAddCourse = useNavigate();
@@ -60,7 +60,7 @@ const Courses = ({ coursesList, authorsList }) => {
 				<section>
 					<div className={styles.coursesHeader}>
 						<SearchBar onSearch={handleSearch} />
-						{role === 'admin' && (
+						{userRole === 'admin' && (
 							<div className={styles.buttonContainer}>
 								<Button
 									type='button'
@@ -79,7 +79,7 @@ const Courses = ({ coursesList, authorsList }) => {
 					</ul>
 				</section>
 			) : (
-				<EmptyCourseList role={role} />
+				<EmptyCourseList userRole={userRole} />
 			)}
 		</>
 	);

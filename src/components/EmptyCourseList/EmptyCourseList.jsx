@@ -6,7 +6,7 @@ import Button from '../../common/Button/Button';
 
 import styles from './EmptyCourseList.module.css';
 
-const EmptyCourseList = ({ role }) => {
+const EmptyCourseList = ({ userRole }) => {
 	const navigateAddCourse = useNavigate();
 
 	const handleAddNewCourse = () => {
@@ -15,7 +15,7 @@ const EmptyCourseList = ({ role }) => {
 
 	return (
 		<section className={styles.empty}>
-			{role === 'admin' ? (
+			{userRole === 'admin' ? (
 				<>
 					<h1>Your List Is Empty</h1>
 					<p>Please use ’Add New Course’ button to add your first course</p>
@@ -35,7 +35,7 @@ const EmptyCourseList = ({ role }) => {
 };
 
 EmptyCourseList.propTypes = {
-	role: PropTypes.string,
+	userRole: PropTypes.string,
 };
 
 export default EmptyCourseList;
