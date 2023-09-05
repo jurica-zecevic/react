@@ -9,9 +9,9 @@ export const logoutUserAction = () => ({
 	type: actions.LOGOUT_USER,
 });
 
-export const setUserAction = (payload) => {
+export const getCurrentUser = (payload) => {
 	return {
-		type: actions.SET_USER,
+		type: actions.GET_CURRENT_USER,
 		payload,
 	};
 };

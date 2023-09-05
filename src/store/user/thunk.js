@@ -1,6 +1,6 @@
 import { BASE_URL } from '../../constants';
 
-import { setUserAction, logoutUserAction } from './actions';
+import { getCurrentUser, logoutUserAction } from './actions';
 
 export const setUser = () => {
 	return async (dispatch) => {
@@ -13,7 +13,7 @@ export const setUser = () => {
 				const user = await response.json();
 
 				if (response.ok) {
-					dispatch(setUserAction(user.result));
+					dispatch(getCurrentUser(user.result));
 				}
 			}
 		} catch (err) {

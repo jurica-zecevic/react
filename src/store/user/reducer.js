@@ -30,7 +30,7 @@ export const userReducer = (state = userInitialState, action) => {
 				token: '',
 				role: '',
 			};
-		case actions.SET_USER:
+		case actions.GET_CURRENT_USER:
 			return {
 				...state,
 				isAuth: true,
