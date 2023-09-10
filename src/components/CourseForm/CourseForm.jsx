@@ -1,21 +1,25 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 
-import { addCourse } from '../../store/courses/actions';
-import { saveAuthor } from '../../store/authors/actions';
+import { getCourses, getAuthors } from '../../selectors';
+
+import { addCourse, updateCourse } from '../../store/courses/thunk';
+import { saveAuthor } from '../../store/authors/thunk';
 
 import { formatCourseDuration } from '../../helpers/formatCourseDuration';
-import { formatCourseDate } from '../../helpers/formatCourseDate';
 
 import AuthorItem from './components/AuthorItem';
 import Button from '../../common/Button/Button';
 import Input from '../../common/Input/Input';
 import Textarea from '../../common/Textarea/Textarea';
 
-import styles from './CreateCourse.module.css';
+import styles from './CourseForm.module.css';
 
-const CreateCourse = () => {
+const CourseForm = () => {
+	const coursesList = useSelector(getCourses);
+	const authorsList = useSelector(getAuthors);
+
 	const [formValues, setFormValues] = useState({
 		title: '',
 		description: '',
@@ -30,8 +34,31 @@ const CreateCourse = () => {
 	const [authors, setAuthors] = useState([]);
 	const [courseAuthors, setCourseAuthors] = useState([]);
 
+	const { action, courseId } = useParams();
+	const isUpdate = action === 'update';
+
 	const dispatch = useDispatch();
 	const navigateCourses = useNavigate();
+
+	useEffect(() => {
+		if (isUpdate) {
+			const courseToUpdate = coursesList.find(
+				(course) => course.id === courseId
+			);
+			if (courseToUpdate) {
+				setFormValues({
+					title: courseToUpdate.title,
+					description: courseToUpdate.description,
+					duration: courseToUpdate.duration,
+				});
+				setCourseAuthors(
+					courseToUpdate.authors.map((authorId) =>
+						authorsList.find((author) => author.id === authorId)
+					)
+				);
+			}
+		}
+	}, [isUpdate, courseId, coursesList, authorsList]);
 
 	const handleInputChange = (event) => {
 		const { name, value } = event.target;
@@ -64,25 +91,32 @@ const CreateCourse = () => {
 	const handleCreateAuthor = () => {
 		const newAuthor = {
 			name: formValues.authorName,
-			id: Date.now().toString(),
 		};
-		dispatch(saveAuthor(newAuthor));
-		setAuthors([...authors, newAuthor]);
-		setFormValues({ ...formValues, authorName: '' });
+		dispatch(saveAuthor(newAuthor)).then((createdAuthor) => {
+			setAuthors([...authors, createdAuthor]);
+			setFormValues({ ...formValues, authorName: '' });
+		});
 	};
 
 	const buildNewCourse = () => {
 		return {
-			id: Date.now().toString(),
 			title: formValues.title,
 			description: formValues.description,
-			creationDate: formatCourseDate(new Date()),
 			duration: parseInt(formValues.duration),
 			authors: courseAuthors.map((author) => author.id),
 		};
 	};
 
-	const handleCreateCourse = (event) => {
+	const buildUpdatedCourse = () => {
+		return {
+			title: formValues.title,
+			description: formValues.description,
+			duration: parseInt(formValues.duration),
+			authors: courseAuthors.map((author) => author.id),
+		};
+	};
+
+	const handleFormSubmit = (event) => {
 		event.preventDefault();
 
 		if (!isFormValid()) {
@@ -90,7 +124,14 @@ const CreateCourse = () => {
 		}
 
 		const newCourse = buildNewCourse();
-		dispatch(addCourse(newCourse));
+		const updatedCourse = buildUpdatedCourse();
+
+		if (isUpdate) {
+			dispatch(updateCourse(updatedCourse, courseId));
+		} else {
+			dispatch(addCourse(newCourse));
+		}
+
 		navigateCourses('/courses');
 	};
 
@@ -113,7 +154,7 @@ const CreateCourse = () => {
 						}}
 						type='text'
 						placeholder='Enter title...'
-						value={formValues.title}
+						value={formValues.title || ''}
 						onChange={handleInputChange}
 					/>
 					{!formValid.isTitleValid && (
@@ -129,7 +170,7 @@ const CreateCourse = () => {
 							borderColor: !formValid.isDescriptionValid && 'var(--color-red)',
 						}}
 						placeholder='Enter description...'
-						value={formValues.description}
+						value={formValues.description || ''}
 						onChange={handleInputChange}
 					/>
 					{!formValid.isDescriptionValid && (
@@ -149,7 +190,7 @@ const CreateCourse = () => {
 							type='number'
 							min='1'
 							placeholder='Enter duration in minutes...'
-							value={formValues.duration}
+							value={formValues.duration || ''}
 							onChange={handleInputChange}
 						/>
 						{!formValid.isDurationValid && (
@@ -174,7 +215,7 @@ const CreateCourse = () => {
 									name='authorName'
 									type='text'
 									placeholder='Enter authors...'
-									value={formValues.authorName}
+									value={formValues.authorName || ''}
 									onChange={handleInputChange}
 								/>
 							</label>
@@ -222,12 +263,12 @@ const CreateCourse = () => {
 				/>
 				<Button
 					type='submit'
-					buttonText='Create course'
-					onClick={handleCreateCourse}
+					buttonText={isUpdate ? 'Update course' : 'Create course'}
+					onClick={handleFormSubmit}
 				/>
 			</div>
 		</div>
 	);
 };
 
-export default CreateCourse;
+export default CourseForm;

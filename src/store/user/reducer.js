@@ -5,6 +5,7 @@ export const userInitialState = {
 	name: '',
 	email: '',
 	token: '',
+	role: '',
 };
 
 export const userReducer = (state = userInitialState, action) => {
@@ -17,8 +18,9 @@ export const userReducer = (state = userInitialState, action) => {
 				name: action.payload.name,
 				email: action.payload.email,
 				token: action.payload.token,
+				role: '',
 			};
-		case actions.LOGOUT:
+		case actions.LOGOUT_USER:
 			localStorage.clear();
 			return {
 				...state,
@@ -26,6 +28,15 @@ export const userReducer = (state = userInitialState, action) => {
 				name: '',
 				email: '',
 				token: '',
+				role: '',
+			};
+		case actions.GET_CURRENT_USER:
+			return {
+				...state,
+				isAuth: true,
+				name: action.payload.name,
+				email: action.payload.email,
+				role: action.payload.role,
 			};
 		default:
 			return state;

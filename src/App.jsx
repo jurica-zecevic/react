@@ -12,10 +12,11 @@ import Header from './components/Header/Header';
 import Container from './common/Container/Container';
 import Courses from './components/Courses/Courses';
 import CourseInfo from './components/CourseInfo/CourseInfo';
-import CreateCourse from './components/CreateCourse/CreateCourse';
+import CourseForm from './components/CourseForm/CourseForm';
 import Registration from './components/Registration/Registration';
 import Login from './components/Login/Login';
 import Footer from './components/Footer/Footer';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 
 const token = localStorage.getItem('token');
 
@@ -55,8 +56,20 @@ const App = () => {
 					element={<CourseInfo coursesList={courses} authorsList={authors} />}
 				/>
 				<Route
+					path='courses/:action/:courseId?'
+					element={
+						<PrivateRoute>
+							<CourseForm coursesList={courses} authorsList={authors} />
+						</PrivateRoute>
+					}
+				/>
+				<Route
 					path='courses/add'
-					element={<CreateCourse courses={courses} />}
+					element={
+						<PrivateRoute>
+							<CourseForm coursesList={courses} />
+						</PrivateRoute>
+					}
 				/>
 				<Route path='registration' element={<Registration />} />
 				<Route path='login' element={<Login />} />

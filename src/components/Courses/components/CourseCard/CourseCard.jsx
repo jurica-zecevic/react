@@ -1,11 +1,13 @@
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import PropTypes from 'prop-types';
 
 import styles from './CourseCard.module.css';
 
-import { deleteCourse } from '../../../../store/courses/actions';
+import { getUserRole } from '../../../../selectors';
+
+import { deleteCourse } from '../../../../store/courses/thunk';
 
 import Button from '../../../../common/Button/Button';
 import IconButton from '../../../../common/IconButton/IconButton';
@@ -31,8 +33,14 @@ const CourseCard = ({
 	const navigateCourseDetails = useNavigate();
 	const dispatch = useDispatch();
 
+	const role = useSelector(getUserRole);
+
 	const showCourseDetails = () => {
 		navigateCourseDetails(`/courses/${id}`);
+	};
+
+	const handleUpdateCourse = () => {
+		navigateCourseDetails(`/courses/update/${id}`);
 	};
 
 	const handleDeleteCourse = () => {
@@ -68,12 +76,20 @@ const CourseCard = ({
 						type='button'
 						onClick={showCourseDetails}
 					/>
-					<IconButton
-						hasBackground
-						icon={deleteCourseIcon}
-						onClick={handleDeleteCourse}
-					/>
-					<IconButton hasBackground icon={editCourseIcon} />
+					{role === 'admin' && (
+						<>
+							<IconButton
+								hasBackground
+								icon={deleteCourseIcon}
+								onClick={handleDeleteCourse}
+							/>
+							<IconButton
+								hasBackground
+								icon={editCourseIcon}
+								onClick={handleUpdateCourse}
+							/>
+						</>
+					)}
 				</div>
 			</div>
 		</div>
