@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { getUser } from '../../selectors';
 
-import { logoutUser } from '../../store/user/actions';
+import { logoutUser } from '../../store/user/thunk';
 
 import styles from './Header.module.css';
 
