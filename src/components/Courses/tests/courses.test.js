@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 import Courses from '../Courses';
-import CreateCourse from '../../CreateCourse/CreateCourse';
+import CourseForm from '../../CourseForm/CourseForm';
 
 describe('Courses component', () => {
 	const mockedState = {
@@ -14,6 +14,7 @@ describe('Courses component', () => {
 			name: 'Test Name',
 			email: '',
 			token: '',
+			role: 'admin',
 		},
 		courses: [
 			{
@@ -53,16 +54,16 @@ describe('Courses component', () => {
 						coursesList={mockedState.courses}
 						authorsList={mockedState.authors}
 					/>
-					<CreateCourse />
+					<CourseForm coursesList={mockedState.courses} />
 				</Router>
 			</Provider>
 		);
 	});
 
 	it('should display amount of CourseCard equal length of courses array', () => {
-		const courseCard = screen.getAllByTestId('course-card');
+		const courseCards = screen.getAllByRole('listitem');
 
-		expect(courseCard.length).toBe(mockedState.courses.length);
+		expect(courseCards.length).toBe(mockedState.courses.length);
 	});
 
 	it('should show CourseForm after click on "Add new course" button', () => {

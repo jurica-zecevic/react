@@ -12,6 +12,7 @@ const mockedState = {
 		name: 'Test Name',
 		email: '',
 		token: '',
+		role: 'admin',
 	},
 	courses: [
 		{

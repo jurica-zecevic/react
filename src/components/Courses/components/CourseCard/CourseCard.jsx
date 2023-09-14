@@ -48,7 +48,7 @@ const CourseCard = ({
 	};
 
 	return (
-		<div className={styles.card} data-testid='course-card'>
+		<div className={styles.card}>
 			<div className={styles.cardHeader}>
 				<h3>{title}</h3>
 				<p>{description}</p>

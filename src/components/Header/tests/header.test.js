@@ -25,6 +25,7 @@ describe('Header component', () => {
 				name: 'Test Name',
 				email: '',
 				token: '',
+				role: 'admin',
 			},
 			courses: [],
 			authors: [],
