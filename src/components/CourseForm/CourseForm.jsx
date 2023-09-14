@@ -142,7 +142,7 @@ const CourseForm = () => {
 	return (
 		<div className={styles.newCourseFormWrapper}>
 			<h1>Course edit/create page</h1>
-			<form className={styles.newCourseForm}>
+			<form className={styles.newCourseForm} data-testid='course-form'>
 				<h2>Main Info</h2>
 				<label className={styles.formLabel} htmlFor='new-course-title'>
 					Title
